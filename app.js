@@ -13,6 +13,9 @@ for (let i=1; i<241; i++) {
     if (i < 61 && i%20 < 13 && i%20 != 0) {
         cases.classList.add('alien')
     }
+    if (i == 230) {
+        cases.classList.add('tireur')
+    }
     cases.classList.add('case')
     cases.setAttribute('id', i)
     grille.append(cases)
@@ -52,8 +55,6 @@ let direction= 'right';
 
 function move() {
 
-    //console.log("playing function")
-
     let num = document.getElementsByClassName('alien').length
     let aliens = document.getElementsByClassName('alien')
 
@@ -61,9 +62,9 @@ function move() {
 
     console.log(num)
 
-    if (cases[239].classList.contains('alien')) {
-        return 0;
-    }
+    //if (cases[239].classList.contains('alien')) {
+    //    return 0;
+    //}
 
     for (let k = num-1; k >= 0; k--) {
 
@@ -123,6 +124,21 @@ function move() {
         goLeft();
 
     }
+
+    for (let i = 0; i < casesList.length; i++) {
+        if (casesList[i].classList.contains('tireur') && casesList[i].classList.contains('alien')) {
+            console.log('Vous avez perdu')
+            clearInterval(game)
+            alert('Vous avez perdu (vaisseau touché)')
+            break;
+        }
+        else if (casesList[i].classList.contains('alien') && i > 220) {
+            console.log('Vous avez perdu')
+            clearInterval(game)
+            alert('Vous avez perdu (sol atteint)')
+            break;
+        }
+    }
     
 }
 
@@ -130,8 +146,8 @@ var game;
 
 let launcher = document.getElementById('button');
 
-
 launcher.addEventListener("click", () => {
+    launcher.style.display = 'none'
     game = setInterval(move, 500)
 });
 
@@ -141,5 +157,16 @@ let stopper = document.getElementById('stop');
 stopper.addEventListener("click", () => {
     clearInterval(game)
 });
+
+let casesList = document.querySelectorAll('.case')
+
+for (let i = 0; i < casesList.length; i++) {
+    if (casesList[i].classList.contains('tireur') && casesList[i].classList.contains('alien')) {
+        //console.log('Vous avez perdu')
+        //alert('Vous avez perdu !')
+        //clearInterval(game)
+        //alert('Vous avez perdu !')
+    }
+}
 
 //launcher.addEventListener('click', setInterval(move, 500))
