@@ -18,30 +18,69 @@ for (let i=1; i<241; i++) {
     grille.append(cases)
 }
 
+let direction= 'right';
+
 function move() {
 
-    let num = document.getElementsByClassName('case').length
+    let num = document.getElementsByClassName('alien').length
+    let aliens = document.getElementsByClassName('alien')
 
     console.log(num)
 
-    //for (let k = 1; k < 241; k++) {
+    for (let k = num-1; k >= 0; k--) {
 
-        for (let i = num-1; i >= 0; i --) {
+        if (aliens[k].classList.contains('right-stop')) {
+
+            direction = 'left';
+
+        }
+
+        else if (aliens[k].classList.contains('left-stop')) {
+
+            direction = 'right';
+
+        }
+
+    }
+
+    if (direction == 'right') {
+
+        for (let i = 239; i >= 0; i --) {
 
             let cases = document.querySelectorAll('.case')[i]
-            //console.log(cases.id)
-
-            if (cases.classList.contains('alien') && !cases.nextElementSibling.classList.contains('alien')) {
-                cases.classList.remove('alien')
-                cases.nextElementSibling.classList.add('alien')
+    
+            if (cases.nextSibling) {
+                if (cases.classList.contains('alien') && !cases.nextElementSibling.classList.contains('alien')) {
+                    cases.classList.remove('alien')
+                    cases.nextElementSibling.classList.add('alien')
+                }
             }
-            //cases.setAttribute('style', 'background-color:yellow;')
+            
         }
-    //}
+
+    }
+
+    else if (direction == 'left') {
+
+        for (let i = 0; i < 239; i ++) {
+
+            let cases = document.querySelectorAll('.case')[i]
+    
+            if (cases.previousSibling) {
+                if (cases.classList.contains('alien') && !cases.previousElementSibling.classList.contains('alien')) {
+                    cases.classList.remove('alien')
+                    cases.previousElementSibling.classList.add('alien')
+                }
+            }
+            
+        }
+
+    }
+
+    
 }
 
 setInterval(move, 1000)
-
 
 //let cases = document.querySelectorAll('.alien')
 
