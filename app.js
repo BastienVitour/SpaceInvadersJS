@@ -126,11 +126,20 @@ function move() {
     
 }
 
+var game;
+
 let launcher = document.getElementById('button');
 
 
 launcher.addEventListener("click", () => {
-    setInterval(move, 500)
+    game = setInterval(move, 500)
+});
+
+let stopper = document.getElementById('stop');
+
+
+stopper.addEventListener("click", () => {
+    clearInterval(game)
 });
 
 //launcher.addEventListener('click', setInterval(move, 500))
