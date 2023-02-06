@@ -126,4 +126,11 @@ function move() {
     
 }
 
-setInterval(move, 500)
+let launcher = document.getElementById('button');
+
+
+launcher.addEventListener("click", () => {
+    setInterval(move, 500)
+});
+
+//launcher.addEventListener('click', setInterval(move, 500))
