@@ -13,6 +13,9 @@ for (let i=1; i<241; i++) {
     if (i < 61 && i%20 < 13 && i%20 != 0) {
         cases.classList.add('alien')
     }
+    if (i == 230) {
+        cases.classList.add('tireur')
+    }
     cases.classList.add('case')
     cases.setAttribute('id', i)
     grille.append(cases)
@@ -106,8 +109,8 @@ function move() {
                 }
             }
 
-            direction = 'right';
-            break;
+        direction = 'right';
+        break;
 
         }
     }
@@ -126,11 +129,54 @@ function move() {
     
 }
 
+document.onkeydown = function (e) {
+
+    let cases = document.querySelectorAll('.case')
+
+    if (e.code == 'Space') {
+
+        for (let i = 0; i < cases.length; i++) {
+            if (cases[i].classList.contains('tireur')) {
+                cases[i].classList.add('laser')
+            }
+        }
+
+        setInterval(goUp, 600)
+
+    }
+};
+
+function goUp() {
+    let cases = document.querySelectorAll('.case')
+    for(let j = 0; j < 20; j++) {
+        //for (let i = 0 ; i <= 239; i++) {
+
+            //if (cases.previousSibling) {
+            for (let k = 0; k < cases.length; k++) {
+                if (cases[k].classList.contains('laser')) {
+                    cases[k].classList.remove('laser')
+                    if (cases[k].previousElementSibling) {
+                        cases[k].previousElementSibling.classList.add('laser')
+                    }
+                    
+                }
+            }
+            //}
+        //}
+    }
+}
+
+
+
+
+
+
+
 let launcher = document.getElementById('button');
 
 
 launcher.addEventListener("click", () => {
-    setInterval(move, 500)
+    setInterval(move, 1500)
 });
 
 //launcher.addEventListener('click', setInterval(move, 500))
