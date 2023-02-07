@@ -173,11 +173,8 @@ function goUp() {
 
 }*/
 
-
-
-
-
-
+let play = false;
+console.log(play)
 
 var game;
 
@@ -186,6 +183,9 @@ let launcher = document.getElementById('button');
 launcher.addEventListener("click", () => {
     launcher.style.display = 'none'
     game = setInterval(move, 500)
+    movement()
+    play = true
+    console.log(play)
 });
 
 let stopper = document.getElementById('stop');
@@ -217,69 +217,111 @@ for (let i = 0; i < casesList.length; i++) {
 
 // PLAYER MOVEMENT
 
-let tireur = document.querySelector('.tireur')
+function movement() {
+    let tireur = document.querySelector('.tireur')
 
-document.onkeydown = function (e) {
-    let cases = document.querySelector('.tireur')
+    document.onkeydown = function (e) {
+        let cases = document.querySelector('.tireur')
 
-    if (e.key == 'ArrowUp') {
+        if (e.key == 'ArrowUp') {
+                for(let j = 0; j < 20; j++) {
+
+                    let cases = document.querySelector('.tireur')
+
+                    if (tireur.id >= 163){
+                
+                                cases.classList.remove('tireur')
+                                cases.previousElementSibling.classList.add('tireur')
+                                tireur.id = cases.id
+                    }        
+            }
+        }
+
+        if (e.key == 'ArrowDown') {
             for(let j = 0; j < 20; j++) {
 
                 let cases = document.querySelector('.tireur')
 
-                if (tireur.id >= 163){
-            
-                            cases.classList.remove('tireur')
-                            cases.previousElementSibling.classList.add('tireur')
-                            tireur.id = cases.id
-                }        
-        }
-    }
-
-    if (e.key == 'ArrowDown') {
-        for(let j = 0; j < 20; j++) {
-
-            let cases = document.querySelector('.tireur')
-
-            console.log(tireur.id)
-            if (tireur.id <= 238){
-            
-                console.log(tireur.id)
-                cases.classList.remove('tireur')
-                cases.nextElementSibling.classList.add('tireur')
-                tireur.id = cases.id
-                console.log(tireur.id)
-    }               
-        }
-    }
-
-    if (e.key == 'ArrowLeft') {
-        if (!cases.classList.contains('left-stop')){
-            cases.classList.remove('tireur')
-            cases.previousElementSibling.classList.add('tireur')
-        }
-    }
-
-    if (e.key == 'ArrowRight'){
-        if (!cases.classList.contains('right-stop')){
-            cases.classList.remove('tireur')
-            cases.nextElementSibling.classList.add('tireur')
-        }
-    }
-
-    if (e.code == 'Space') {
-        console.log(e.code)
-        let cases = document.querySelectorAll('.case')
-
-        for (let i = 0; i < cases.length; i++) {
-            if (cases[i].classList.contains('tireur')) {
-                cases[i].classList.add('laser')
+                if (tireur.id <= 238){
+                
+                    cases.classList.remove('tireur')
+                    cases.nextElementSibling.classList.add('tireur')
+                    tireur.id = cases.id
+        }               
             }
         }
 
-        setInterval(goUp, 600)
+        if (e.key == 'ArrowLeft') {
+            if (!cases.classList.contains('left-stop')){
+                cases.classList.remove('tireur')
+                cases.previousElementSibling.classList.add('tireur')
+            }
+        }
+
+        if (e.key == 'ArrowRight'){
+            if (!cases.classList.contains('right-stop')){
+                cases.classList.remove('tireur')
+                cases.nextElementSibling.classList.add('tireur')
+            }
+        }
+
+        if (e.code == 'Space') {
+            console.log(e.code)
+            let cases = document.querySelectorAll('.case')
+
+            for (let i = 0; i < cases.length; i++) {
+                if (cases[i].classList.contains('tireur')) {
+                    cases[i].classList.add('laser')
+                }
+            }
+
+            setInterval(goUp, 600)
+
+        }
+    };
+}
+
+
+// RICK ROLL
+
+var code = [];
+const rightCode = ["UP", "DOWN", "LEFT", "RIGHT", "RIGHT", "LEFT", "DOWN", "UP"];
+
+console.log(rightCode)
+console.log(code)
+
+document.onkeydown = function (f) {
+    if (f.key == 'ArrowUp') {
+        code.push("UP")
+        console.log(code)
 
     }
-};
-
-// RELOAD THE GAME 
+    if (f.key == 'ArrowDown') {
+        code.push("DOWN")
+        console.log(code)
+    }
+    if (f.key == 'ArrowRight') {
+        code.push("RIGHT")
+        console.log(code)
+    }
+    if (f.key == 'ArrowLeft') {
+        code.push("LEFT")
+        console.log(code)
+    }
+    if (code.length == rightCode.length) {
+        alert("même taille")
+        for (let i = 0; i < code.length; i++) {
+            if (code[i] == rightCode[i]) {
+                console.log("good")
+            }
+            else {
+                console.log("pas good " + code)
+                for (let f = 0; f < rightCode.length; f++){
+                    code.pop()
+                }
+                console.log(code)
+                break 
+            }
+        }
+    }
+}
