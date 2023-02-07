@@ -146,6 +146,12 @@ stopper.addEventListener("click", () => {
     clearInterval(game)
 });
 
+let replay = document.getElementById('play_again')
+
+replay.addEventListener("click", () => {
+    document.location.reload(false)
+})
+
 //launcher.addEventListener('click', setInterval(move, 500))
 
 
@@ -202,3 +208,4 @@ document.onkeydown = function (e) {
     }
 };
 
+// RELOAD THE GAME 
