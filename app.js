@@ -19,6 +19,10 @@ for (let i=1; i<241; i++) {
     cases.classList.add('case')
     cases.setAttribute('id', i)
     grille.append(cases)
+
+if (i == 230) {
+    cases.classList.add('tireur')
+}
 }
 
 function goLeft() {
@@ -145,6 +149,12 @@ stopper.addEventListener("click", () => {
     clearInterval(game)
 });
 
+let replay = document.getElementById('play_again')
+
+replay.addEventListener("click", () => {
+    document.location.reload(false)
+})
+
 let casesList = document.querySelectorAll('.case')
 
 for (let i = 0; i < casesList.length; i++) {
@@ -157,3 +167,59 @@ for (let i = 0; i < casesList.length; i++) {
 }
 
 //launcher.addEventListener('click', setInterval(move, 500))
+
+
+// PLAYER MOVEMENT
+
+let tireur = document.querySelector('.tireur')
+
+document.onkeydown = function (e) {
+    let cases = document.querySelector('.tireur')
+
+    if (e.key == 'ArrowUp') {
+            for(let j = 0; j < 20; j++) {
+
+                let cases = document.querySelector('.tireur')
+
+                if (tireur.id >= 163){
+            
+                            cases.classList.remove('tireur')
+                            cases.previousElementSibling.classList.add('tireur')
+                            tireur.id = cases.id
+                }        
+        }
+    }
+
+    if (e.key == 'ArrowDown') {
+        for(let j = 0; j < 20; j++) {
+
+            let cases = document.querySelector('.tireur')
+
+            console.log(tireur.id)
+            if (tireur.id <= 238){
+            
+                console.log(tireur.id)
+                cases.classList.remove('tireur')
+                cases.nextElementSibling.classList.add('tireur')
+                tireur.id = cases.id
+                console.log(tireur.id)
+    }               
+        }
+    }
+
+    if (e.key == 'ArrowLeft') {
+        if (!cases.classList.contains('left-stop')){
+            cases.classList.remove('tireur')
+            cases.previousElementSibling.classList.add('tireur')
+        }
+    }
+
+    if (e.key == 'ArrowRight'){
+        if (!cases.classList.contains('right-stop')){
+            cases.classList.remove('tireur')
+            cases.nextElementSibling.classList.add('tireur')
+        }
+    }
+};
+
+// RELOAD THE GAME 
