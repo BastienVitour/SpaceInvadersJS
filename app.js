@@ -52,6 +52,7 @@ function goRight() {
 }
 
 let direction= 'right';
+var lost = false;
 
 function move() {
 
@@ -72,18 +73,7 @@ function move() {
         if (aliens[k].classList.contains('right-stop')) {
             
             for(let j = 0; j < 20; j++) {
-                for (let i = 239; i >= 0; i --) {
-
-                    let cases = document.querySelectorAll('.case')[i]
-            
-                    if (cases.nextSibling) {
-                        if (cases.classList.contains('alien') && !cases.nextElementSibling.classList.contains('alien')) {
-                            cases.classList.remove('alien')
-                            cases.nextElementSibling.classList.add('alien')
-                        }
-                    }
-                    
-                }
+                goRight()
             }            
             direction = 'left';
             break;  
@@ -93,18 +83,7 @@ function move() {
         else if (aliens[k].classList.contains('left-stop') && !cases[0].classList.contains('alien')) {
 
             for(let j = 0; j < 20; j++) {
-                for (let i = 239; i >= 0; i --) {
-
-                    let cases = document.querySelectorAll('.case')[i]
-            
-                    if (cases.nextSibling) {
-                        if (cases.classList.contains('alien') && !cases.nextElementSibling.classList.contains('alien')) {
-                            cases.classList.remove('alien')
-                            cases.nextElementSibling.classList.add('alien')
-                        }
-                    }
-                    
-                }
+                goRight()
             }
 
             direction = 'right';
@@ -126,21 +105,29 @@ function move() {
     }
 
     for (let i = 0; i < casesList.length; i++) {
-        if (casesList[i].classList.contains('tireur') && casesList[i].classList.contains('alien')) {
+        if (casesList[i].classList.contains('tireur')) {
+            console.log(casesList[i].classList)
+        }
+        if ((casesList[i].classList.contains('tireur') && casesList[i].classList.contains('alien')) || (casesList[i].classList.contains('alien') && i > 220)) {
             console.log('Vous avez perdu')
             clearInterval(game)
-            alert('Vous avez perdu (vaisseau touché)')
+            lost = true;
+            //alert('Vous avez perdu (vaisseau touché)')
             break;
         }
-        else if (casesList[i].classList.contains('alien') && i > 220) {
-            console.log('Vous avez perdu')
+        /*if (casesList[i].classList.contains('alien') && i > 220) {
+            //console.log('Vous avez perdu')
             clearInterval(game)
-            alert('Vous avez perdu (sol atteint)')
+            //alert('Vous avez perdu (sol atteint)')
             break;
-        }
+        }*/
     }
     
 }
+
+//if (lost) {
+//    alert('Vous avez perdu (vaisseau touché)')
+//}
 
 var game;
 
@@ -148,7 +135,7 @@ let launcher = document.getElementById('button');
 
 launcher.addEventListener("click", () => {
     launcher.style.display = 'none'
-    game = setInterval(move, 500)
+    game = setInterval(move, 50)
 });
 
 let stopper = document.getElementById('stop');
