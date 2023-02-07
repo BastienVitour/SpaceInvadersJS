@@ -90,8 +90,8 @@ function move() {
                 goRight()
             }
 
-            direction = 'right';
-            break;
+        direction = 'right';
+        break;
 
         }
     }
@@ -129,9 +129,76 @@ function move() {
     
 }
 
-//if (lost) {
-//    alert('Vous avez perdu (vaisseau touché)')
-//}
+document.onkeydown = function (e) {
+
+    console.log(e.code)
+
+    let cases = document.querySelectorAll('.case')
+
+    if (e.code == 'Space') {
+        console.log(e.code)
+
+        for (let i = 0; i < cases.length; i++) {
+            if (cases[i].classList.contains('tireur')) {
+                cases[i].classList.add('laser')
+            }
+        }
+
+        setInterval(goUp, 600)
+
+    }
+};
+
+function goUp() {
+    let cases = document.querySelectorAll('.case')
+
+    for(let j = 0; j < 20; j++) {
+        //for (let i = 0 ; i <= 239; i++) {
+
+            //if (cases.previousSibling) {
+            for (let k = 0; k < cases.length; k++) {
+                if (cases[k].classList.contains('laser')) {
+                    cases[k].classList.remove('laser')
+                    if (cases[k].previousElementSibling) {
+                        cases[k].previousElementSibling.classList.add('laser')
+                    }
+                    
+                }
+            }
+            //}
+        //}
+    }
+    
+    for (let k = 0; k < cases.length; k++) {
+        if (cases[k].classList.contains('alien') && cases[k].classList.contains('laser')) {
+            cases[k].classList.add('boom')
+            cases[k].classList.remove('laser')
+            setTimeout(function(){
+                cases[k].classList.remove('alien')
+                cases[k].classList.remove('boom')
+           }, 200);
+
+            /*if (cases[k].previousElementSibling) {
+                cases[k].previousElementSibling.classList.add('')
+            }*/
+        }
+    }
+}
+
+/*function explosion(){
+
+    cases[k].classList.remove('alien')
+    cases[k].classList.remove('laser')
+    cases[k].classList.remove('boom')
+
+
+}*/
+
+
+
+
+
+
 
 var game;
 
@@ -139,7 +206,7 @@ let launcher = document.getElementById('button');
 
 launcher.addEventListener("click", () => {
     launcher.style.display = 'none'
-    game = setInterval(move, 50)
+    game = setInterval(move, 500)
 });
 
 let stopper = document.getElementById('stop');
