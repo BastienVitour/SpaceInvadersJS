@@ -148,6 +148,7 @@ document.onkeydown = function (e) {
 
 function goUp() {
     let cases = document.querySelectorAll('.case')
+
     for(let j = 0; j < 20; j++) {
         //for (let i = 0 ; i <= 239; i++) {
 
@@ -164,7 +165,33 @@ function goUp() {
             //}
         //}
     }
+    
+    for (let k = 0; k < cases.length; k++) {
+        if (cases[k].classList.contains('alien') && cases[k].classList.contains('laser')) {
+            cases[k].classList.add('boom')
+            cases[k].classList.remove('laser')
+            setTimeout(function(){
+                cases[k].classList.remove('alien')
+                cases[k].classList.remove('boom')
+           }, 200);
+
+            /*if (cases[k].previousElementSibling) {
+                cases[k].previousElementSibling.classList.add('')
+            }*/
+        }
+    }
 }
+
+/*function explosion(){
+
+    cases[k].classList.remove('alien')
+    cases[k].classList.remove('laser')
+    cases[k].classList.remove('boom')
+
+
+}*/
+
+
 
 
 
