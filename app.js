@@ -128,27 +128,6 @@ function move() {
     }
     
 }
-
-document.onkeydown = function (e) {
-
-    console.log(e.code)
-
-    let cases = document.querySelectorAll('.case')
-
-    if (e.code == 'Space') {
-        console.log(e.code)
-
-        for (let i = 0; i < cases.length; i++) {
-            if (cases[i].classList.contains('tireur')) {
-                cases[i].classList.add('laser')
-            }
-        }
-
-        setInterval(goUp, 600)
-
-    }
-};
-
 function goUp() {
     let cases = document.querySelectorAll('.case')
 
@@ -286,6 +265,20 @@ document.onkeydown = function (e) {
             cases.classList.remove('tireur')
             cases.nextElementSibling.classList.add('tireur')
         }
+    }
+
+    if (e.code == 'Space') {
+        console.log(e.code)
+        let cases = document.querySelectorAll('.case')
+
+        for (let i = 0; i < cases.length; i++) {
+            if (cases[i].classList.contains('tireur')) {
+                cases[i].classList.add('laser')
+            }
+        }
+
+        setInterval(goUp, 600)
+
     }
 };
 
