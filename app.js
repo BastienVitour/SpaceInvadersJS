@@ -1,6 +1,11 @@
 var url = window.location.href;
 var isSecret = url.includes('secret');
 
+if (isSecret){
+    let fond = document.getElementById('body');
+    fond.style.background = 'url(ressources/rick_background.gif)'
+}
+
 let grille = document.querySelector('.grille');
 
 for (let i=1; i<241; i++) {
