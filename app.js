@@ -66,6 +66,8 @@ function move() {
         alert('Vous avez gagné')
         console.log('Vous avez gagné')
         clearInterval(game)
+        let replay = document.getElementById('play_again')
+        replay.style.display = 'inline'
     }
 
     let cases = document.querySelectorAll('.case')
@@ -118,6 +120,8 @@ function move() {
             clearInterval(game)
             lost = true;
             alert('vous avez perdu')
+            let replay = document.getElementById('play_again')
+            replay.style.display = 'inline'
             break;
         }
     }
@@ -193,6 +197,7 @@ replay.addEventListener("click", () => {
 let casesList = document.querySelectorAll('.case')
 
 // PLAYER MOVEMENT
+var laserShoot = new Audio("ressources/laser.mp3");
 
 function movement() {
     let tireur = document.querySelector('.tireur')
@@ -243,6 +248,9 @@ function movement() {
         }
 
         if (e.code == 'Space') {
+            console.log(laserShoot)
+            laserShoot.currentTime = 0;
+            laserShoot.play();
             console.log(e.code)
             let cases = document.querySelectorAll('.case')
 
