@@ -50,6 +50,11 @@ h1 {
     background-position: center;
     background-size: contain;
 }
+.aliens {
+    background: url(ressources/ennemies.png);
+    background-position: center;
+    width: 100px;
+}
 .boom {
     background-color: red;
 }

@@ -1,9 +1,11 @@
 let grille = document.querySelector('.grille');
+let shooting = false;
 
 for (let i=1; i<241; i++) {
     let cases = document.createElement('div');
     if (i%20 == 0) {
         cases.setAttribute('class', 'right-stop')
+
     }
     else if (i%20 == 1){
         cases.setAttribute('class', 'left-stop')
@@ -11,16 +13,13 @@ for (let i=1; i<241; i++) {
     if (i < 61 && i%20 < 13 && i%20 != 0) {
         cases.classList.add('alien')
     }
+    
     if (i == 230) {
         cases.classList.add('tireur')
     }
     cases.classList.add('case')
     cases.setAttribute('id', i)
     grille.append(cases)
-
-if (i == 230) {
-    cases.classList.add('tireur')
-}
 }
 
 function goLeft() {
@@ -143,6 +142,29 @@ var score = 0
 function goUp() {
     let cases = document.querySelectorAll('.case')
 
+    if (e.code == 'Space') {
+        if(!shooting){
+            shooting = true;
+            setTimeout(function(){
+                shooting = false;
+            },1000);
+    
+
+            for (let i = 0; i < cases.length; i++) {
+                if (cases[i].classList.contains('tireur')) {
+                    cases[i].classList.add('laser')
+                }
+            }
+        }
+    }
+    setInterval(goUp, 500);
+};
+
+
+function goUp() {
+
+    let cases = document.querySelectorAll('.case')
+    
     for(let j = 0; j < 20; j++) {
         for (let k = 0; k < cases.length; k++) {
             if (cases[k].classList.contains('laser')) {
@@ -164,7 +186,15 @@ function goUp() {
             cases[k].classList.remove('alien')
             setTimeout(function(){
                 cases[k].classList.remove('boom')
-                score += 100
+                if (url.includes('easy')) {
+                    score += 100;
+                }
+                else if (url.includes('mid')) {
+                    score += 200
+                }
+                else if (url.includes('hard')) {
+                    score += 300;
+                }
                 document.getElementById('score').innerText = "Score : " + score
            }, 100);
             
@@ -188,10 +218,9 @@ else if (url.includes('hard')) {
     speed = 500;
 }
 
-var game;
-
 let launcher = document.getElementById('button');
 let stopper = document.getElementById('stop');
+
 
 launcher.addEventListener("click", () => {
     launcher.style.display = 'none'
@@ -267,21 +296,42 @@ function movement() {
             }
         }
 
-        if (e.code == 'Space') {
-            //console.log(laserShoot)
-            laserShoot.currentTime = 0;
-            laserShoot.play();
-            //console.log(e.code)
-            let cases = document.querySelectorAll('.case')
+        
+        document.onkeyup = function (e) {
+            if (e.code == 'Space') {
+                if(!shooting){
+                    shooting = true;
+                    var lasers = 0;
+                    //console.log(laserShoot)
+                    laserShoot.currentTime = 0;
+                    laserShoot.play();
+                    //console.log(e.code)
+                    let cases = document.querySelectorAll('.case')
+                    
+                    setTimeout(function(){
+                        shooting = false;
+                    },400);
+        
+                    for (let i = 0; i < cases.length; i++) {
+                        
+                        if (cases[i].classList.contains('tireur')) {
+                            
+                            cases[i].classList.add('laser')
+                        
+                        }
+                        if (cases[i].classList.contains('laser')) {
+                            lasers ++
+                            console.log(lasers)
+                        }
 
-            for (let i = 0; i < cases.length; i++) {
-                if (cases[i].classList.contains('tireur')) {
-                    cases[i].classList.add('laser')
+                        /*if (lasers == 2){
+                            cases[i].classList.remove('laser')
+                        }*/
+                    }
                 }
             }
-            setInterval(goUp, 600)
         }
-    };
+    }
 }
 
 function pause() {
@@ -346,3 +396,5 @@ document.onkeydown = function (f) {
         }
     }
 }
+
+setInterval(goUp, 200)
