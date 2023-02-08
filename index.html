@@ -9,29 +9,48 @@
     <title>Space Invaders</title>
 </head>
 <body>
+    <div class="container">
 
-    <h1>SpAce InvAders</h1>
-    <div id="main">
+        <header>
+            <h1 class="titre">SpAce InvAders</h1>
+        </header>
 
-        <button id="launch">LAncer une pArtie</button>
+        <nav class="menu">
+            <a href="Connexion"><button>Connexion</button></a>
+            <a href="Inscription"><button>Inscription</button></a>
+            <a href="APropos"><button>A Propos</button></a>
+        </nav>
 
-        <div id="difficulty" class="buttons">
+        
+        <div class="main">
 
-            <input type="radio" name="diff" id="easy" value="easy">
-            <label for="easy" class="chosen-diff" id="easy-choice">FAcile</label>
+            <div class="launch">
+                <button >LAncer une pArtie</button>
+            </div>
+            
+            <div id="difficulty" class="buttons">
 
-            <input type="radio" name="diff" id="mid" value="mid">
-            <label for="mid" class="chosen-diff" id="mid-choice">IntermediAire</label>
 
-            <input type="radio" name="diff" id="hard" value="hard">
-            <label for="hard" class="chosen-diff" id="hard-choice">Difficile</label>
+                <div class="box">
+                    <input type="radio" name="diff" id="easy" value="easy">
+                    <label for="easy" class="chosen-diff" id="easy-choice">FAcile</label>
+                </div>
+            
+                <div class="box">
+                    <input type="radio" name="diff" id="mid" value="mid">
+                    <label for="mid" class="chosen-diff" id="mid-choice">IntermediAire</label>
+                </div>
+            
+                <div class="box">
+                    <input type="radio" name="diff" id="hard" value="hard">
+                    <label for="hard" class="chosen-diff" id="hard-choice">Difficile</label>
+                </div>
+        
+            </div>
 
         </div>
 
     </div>
-    
 </body>
-
-    <script src="index.js"></script>
-
+<script src="index.js"></script>
 </html>
