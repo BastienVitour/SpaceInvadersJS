@@ -143,6 +143,8 @@ function move() {
     
 }
 
+var explosion = new Audio("ressources/explosion.mp3")
+
 function goUp() {
     let cases = document.querySelectorAll('.case')
 
@@ -160,7 +162,9 @@ function goUp() {
     
     for (let k = 0; k < cases.length; k++) {
         if (cases[k].classList.contains('alien') && cases[k].classList.contains('laser')) {
+            explosion.currentTime = 0
             cases[k].classList.add('boom')
+            explosion.play();
             cases[k].classList.remove('laser')
             setTimeout(function(){
                 cases[k].classList.remove('alien')
@@ -190,16 +194,20 @@ else if (url.includes('hard')) {
 var game;
 
 let launcher = document.getElementById('button');
+let stopper = document.getElementById('stop');
 
 launcher.addEventListener("click", () => {
     launcher.style.display = 'none'
+    stopper.style.display = 'inline'
     game = setInterval(move, speed)
     movement()
 });
 
-let stopper = document.getElementById('stop');
-
 stopper.addEventListener("click", () => {
+    stopper.style.display = 'none'
+    launcher.style.display = 'inline'
+    launcher.innerText = 'Reprendre'
+    pause()
     clearInterval(game)
 });
 
@@ -279,6 +287,12 @@ function movement() {
     };
 }
 
+function pause() {
+    document.onkeydown = function (e) {
+        e.preventDefault()
+    }
+}
+
 // RICK ROLL
 
 var code = [];
@@ -318,7 +332,7 @@ document.onkeydown = function (f) {
         code.push("A")
         console.log(code)
     }
-    
+
     if (code.length == rightCode.length) {
         if (isEqual(code, rightCode) == true){
             alert("vous avez trouvé le niveau secret")

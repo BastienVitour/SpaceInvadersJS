@@ -1,3 +1,6 @@
+body {
+    background-color: black;
+}
 
 .grille {
     display: flex;
@@ -22,11 +25,6 @@
 }
 
 @font-face {
-	font-family: '2025';
-	src: url('ressources/full-Pack-2025.ttf') format('truetype');
-}
-
-@font-face {
 	font-family: 'minecraft';
 	src: url('ressources/minecrafter/Minecrafter.Alt.ttf') format('truetype');
 }
@@ -35,15 +33,15 @@ h1 {
     text-align: center;
     margin: 20px 0;
     font-family: 'minecraft', 'sans-serif';
-    
+    color: #FFF;
 }
 .grille div {
     width: 25px;
     height: 25px;
 }
 .tireur {
-    background: url(ressources/vaisseau.png);
-    transform: rotate(180deg);
+    background: url(ressources/space-invaders.png);
+    /*transform: rotate(180deg);*/
     background-position: center;
     background-size: contain;
 }
@@ -65,7 +63,7 @@ h1 {
 button, .chosen-diff {
     background-color: black;
     color: white;
-    border: none;
+    border: 2px solid white;
     border-radius: 5px;
     font-family: 'minecraft';
     padding: 10px;
@@ -86,6 +84,6 @@ input[type='radio'] {
     appearance: none;
 }
 
-#play_again {
+#play_again, #stop {
     display: none;
 }
