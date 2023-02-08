@@ -2,27 +2,36 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Space Invaders</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="ressources/alien-pixelated-shape-of-a-digital-game.png" type="image/x-icon">
+    <link rel="shortcut icon" href="ressources/alien.png" type="image/x-icon">
+    <title>Space Invaders</title>
 </head>
 <body>
-    <h1>SPACE INVADERS</h1>
 
+    <h1>SpAce InvAders</h1>
     <div id="main">
 
-        <div class="grille"></div>
+        <button id="launch">LAncer une pArtie</button>
 
-        <div id="buttons">
-            <button id="button">LAncer lA pArtie</button>
-            <button id="stop">Arreter lA pArtie</button>
-            <button id="play_again"> Rejouer </button>
+        <div id="difficulty" class="buttons">
+
+            <input type="radio" name="diff" id="easy" value="easy">
+            <label for="easy" class="chosen-diff" id="easy-choice">FAcile</label>
+
+            <input type="radio" name="diff" id="mid" value="mid">
+            <label for="mid" class="chosen-diff" id="mid-choice">IntermediAire</label>
+
+            <input type="radio" name="diff" id="hard" value="hard">
+            <label for="hard" class="chosen-diff" id="hard-choice">Difficile</label>
+
         </div>
 
     </div>
- 
-    <script src="app.js"></script>
-    <!--<script src="test.js"></script>-->
+    
 </body>
+
+    <script src="index.js"></script>
+
 </html>

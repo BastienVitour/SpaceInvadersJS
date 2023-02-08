@@ -4,11 +4,9 @@ for (let i=1; i<241; i++) {
     let cases = document.createElement('div');
     if (i%20 == 0) {
         cases.setAttribute('class', 'right-stop')
-        //cases.setAttribute('style', 'background-color:red;')
     }
     else if (i%20 == 1){
         cases.setAttribute('class', 'left-stop')
-        //cases.setAttribute('style', 'background-color:green;')
     }
     if (i < 61 && i%20 < 13 && i%20 != 0) {
         cases.classList.add('alien')
@@ -59,17 +57,20 @@ let direction= 'right';
 var lost = false;
 
 function move() {
+    console.log(speed)
 
     let num = document.getElementsByClassName('alien').length
     let aliens = document.getElementsByClassName('alien')
 
+    if (num < 1) {
+        alert('Vous avez gagné')
+        console.log('Vous avez gagné')
+        clearInterval(game)
+    }
+
     let cases = document.querySelectorAll('.case')
 
     console.log(num)
-
-    //if (cases[239].classList.contains('alien')) {
-    //    return 0;
-    //}
 
     for (let k = num-1; k >= 0; k--) {
 
@@ -116,36 +117,26 @@ function move() {
             console.log('Vous avez perdu')
             clearInterval(game)
             lost = true;
-            //alert('Vous avez perdu (vaisseau touché)')
+            alert('vous avez perdu')
             break;
         }
-        /*if (casesList[i].classList.contains('alien') && i > 220) {
-            //console.log('Vous avez perdu')
-            clearInterval(game)
-            //alert('Vous avez perdu (sol atteint)')
-            break;
-        }*/
     }
     
 }
+
 function goUp() {
     let cases = document.querySelectorAll('.case')
 
     for(let j = 0; j < 20; j++) {
-        //for (let i = 0 ; i <= 239; i++) {
-
-            //if (cases.previousSibling) {
-            for (let k = 0; k < cases.length; k++) {
-                if (cases[k].classList.contains('laser')) {
-                    cases[k].classList.remove('laser')
-                    if (cases[k].previousElementSibling) {
-                        cases[k].previousElementSibling.classList.add('laser')
-                    }
-                    
+        for (let k = 0; k < cases.length; k++) {
+            if (cases[k].classList.contains('laser')) {
+                cases[k].classList.remove('laser')
+                if (cases[k].previousElementSibling) {
+                    cases[k].previousElementSibling.classList.add('laser')
                 }
+                
             }
-            //}
-        //}
+        }
     }
     
     for (let k = 0; k < cases.length; k++) {
@@ -157,27 +148,25 @@ function goUp() {
                 cases[k].classList.remove('boom')
            }, 200);
 
-            /*if (cases[k].previousElementSibling) {
-                cases[k].previousElementSibling.classList.add('')
-            }*/
         }
     }
 }
 
-/*function explosion(){
+console.log(window.location.href)
 
-    cases[k].classList.remove('alien')
-    cases[k].classList.remove('laser')
-    cases[k].classList.remove('boom')
+url = window.location.href;
 
+var speed;
 
-}*/
-
-
-
-
-
-
+if (url.includes('easy')) {
+    speed = 1000;
+}
+else if (url.includes('mid')) {
+    speed = 750;
+}
+else if (url.includes('hard')) {
+    speed = 500;
+}
 
 var game;
 
@@ -185,11 +174,10 @@ let launcher = document.getElementById('button');
 
 launcher.addEventListener("click", () => {
     launcher.style.display = 'none'
-    game = setInterval(move, 500)
+    game = setInterval(move, speed)
 });
 
 let stopper = document.getElementById('stop');
-
 
 stopper.addEventListener("click", () => {
     clearInterval(game)
@@ -202,18 +190,6 @@ replay.addEventListener("click", () => {
 })
 
 let casesList = document.querySelectorAll('.case')
-
-for (let i = 0; i < casesList.length; i++) {
-    if (casesList[i].classList.contains('tireur') && casesList[i].classList.contains('alien')) {
-        //console.log('Vous avez perdu')
-        //alert('Vous avez perdu !')
-        //clearInterval(game)
-        //alert('Vous avez perdu !')
-    }
-}
-
-//launcher.addEventListener('click', setInterval(move, 500))
-
 
 // PLAYER MOVEMENT
 
