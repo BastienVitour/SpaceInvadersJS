@@ -1,4 +1,5 @@
 let grille = document.querySelector('.grille');
+let shooting = false;
 
 for (let i=1; i<241; i++) {
     let cases = document.createElement('div');
@@ -12,6 +13,7 @@ for (let i=1; i<241; i++) {
     if (i < 61 && i%20 < 13 && i%20 != 0) {
         cases.classList.add('alien')
     }
+    
     if (i == 230) {
         cases.classList.add('tireur')
     }
@@ -53,7 +55,7 @@ function goRight() {
 let direction= 'right';
 
 function move() {
-    console.log(speed)
+    //console.log(speed)
 
     //console.log("playing function")
 
@@ -68,7 +70,7 @@ function move() {
 
     let cases = document.querySelectorAll('.case')
 
-    console.log(num)
+    //console.log(num)
 
     for (let k = num-1; k >= 0; k--) {
 
@@ -131,7 +133,7 @@ function move() {
 
     for (let i = 0; i < casesList.length; i++) {
         if (casesList[i].classList.contains('tireur')) {
-            console.log(casesList[i].classList)
+            //console.log(casesList[i].classList)
         }
         if ((casesList[i].classList.contains('tireur') && casesList[i].classList.contains('alien')) || (casesList[i].classList.contains('alien') && i > 220)) {
             console.log('Vous avez perdu')
@@ -148,14 +150,20 @@ function goUp() {
     let cases = document.querySelectorAll('.case')
 
     if (e.code == 'Space') {
+        if(!shooting){
+            shooting = true;
+            setTimeout(function(){
+                shooting = false;
+            },1000);
         
-        for (let i = 0; i < cases.length; i++) {
-            if (cases[i].classList.contains('tireur')) {
-                cases[i].classList.add('laser')
+            for (let i = 0; i < cases.length; i++) {
+                if (cases[i].classList.contains('tireur')) {
+                    cases[i].classList.add('laser')
+                }
             }
         }
     }
-    setInterval(goUp, 1000);
+    setInterval(goUp, 500);
 };
 
 
@@ -280,18 +288,39 @@ function movement() {
             }
         }
 
-        if (e.code == 'Space') {
-            console.log(e.code)
-            let cases = document.querySelectorAll('.case')
+        
+        document.onkeyup = function (e) {
+            if (e.code == 'Space') {
+                if(!shooting){
+                    shooting = true;
+                    var lasers = 0;
+                    console.log(e.code)
+                    let cases = document.querySelectorAll('.case')
+                    
+                    setTimeout(function(){
+                        shooting = false;
+                    },1000);
+        
+                    for (let i = 0; i < cases.length; i++) {
+                        
+                        if (cases[i].classList.contains('tireur')) {
+                            
+                            cases[i].classList.add('laser')
+                        
+                        }
+                        if (cases[i].classList.contains('laser')) {
+                            lasers ++
+                            console.log(lasers)
+                        }
 
-            for (let i = 0; i < cases.length; i++) {
-                if (cases[i].classList.contains('tireur')) {
-                    cases[i].classList.add('laser')
+                        /*if (lasers == 2){
+                            cases[i].classList.remove('laser')
+                        }*/
+                    }
                 }
             }
-            setInterval(goUp, 600)
         }
-    };
+    }
 }
 
 
@@ -342,3 +371,5 @@ document.onkeydown = function (f) {
         }
     }
 }
+
+setInterval(goUp, 200)
