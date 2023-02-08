@@ -87,3 +87,8 @@ input[type='radio'] {
 #play_again, #stop {
     display: none;
 }
+
+h3 {
+    color: white;
+    font-family: 'minecraft', 'sans-serif';
+}

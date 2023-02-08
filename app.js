@@ -57,9 +57,6 @@ let direction= 'right';
 var down = true;
 
 function move() {
-    console.log(down)
-    //console.log(speed)
-
     let num = document.getElementsByClassName('alien').length
     let aliens = document.getElementsByClassName('alien')
 
@@ -69,12 +66,10 @@ function move() {
         clearInterval(game)
         let replay = document.getElementById('play_again')
         replay.style.display = 'inline'
+        stopper.style.display = 'none'
     }
 
     for (let i = 0; i < casesList.length; i++) {
-        if (casesList[i].classList.contains('tireur')) {
-            //console.log(casesList[i].classList)
-        }
         if ((casesList[i].classList.contains('tireur') && casesList[i].classList.contains('alien')) || (casesList[i].classList.contains('alien') && i > 220)) {
             console.log('Vous avez perdu')
             clearInterval(game)
@@ -82,13 +77,12 @@ function move() {
             alert('vous avez perdu')
             let replay = document.getElementById('play_again')
             replay.style.display = 'inline'
+            stopper.style.display = 'none'
             break;
         }
     }
 
     let cases = document.querySelectorAll('.case')
-
-    //console.log(num)
 
     for (let k = num-1; k >= 0; k--) {
 
@@ -144,6 +138,7 @@ function move() {
 }
 
 var explosion = new Audio("ressources/explosion.mp3")
+var score = 0
 
 function goUp() {
     let cases = document.querySelectorAll('.case')
@@ -166,16 +161,18 @@ function goUp() {
             cases[k].classList.add('boom')
             explosion.play();
             cases[k].classList.remove('laser')
+            cases[k].classList.remove('alien')
             setTimeout(function(){
-                cases[k].classList.remove('alien')
                 cases[k].classList.remove('boom')
-           }, 200);
-
+                score += 100
+                document.getElementById('score').innerText = "Score : " + score
+           }, 100);
+            
         }
     }
 }
 
-console.log(window.location.href)
+//console.log(window.location.href)
 
 url = window.location.href;
 
@@ -271,10 +268,10 @@ function movement() {
         }
 
         if (e.code == 'Space') {
-            console.log(laserShoot)
+            //console.log(laserShoot)
             laserShoot.currentTime = 0;
             laserShoot.play();
-            console.log(e.code)
+            //console.log(e.code)
             let cases = document.querySelectorAll('.case')
 
             for (let i = 0; i < cases.length; i++) {
@@ -299,8 +296,8 @@ var code = [];
 const rightCode = ["UP", "UP", "DOWN", "DOWN", "LEFT", "RIGHT", "LEFT", "RIGHT", "B", "A"];
 var verif = [];
 
-console.log(rightCode)
-console.log(code)
+//console.log(rightCode)
+//console.log(code)
 
 function isEqual(tableau1, tableau2) {
     return tableau1.every((value, index) => value === tableau2[index])
