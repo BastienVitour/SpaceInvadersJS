@@ -4,11 +4,10 @@ for (let i=1; i<241; i++) {
     let cases = document.createElement('div');
     if (i%20 == 0) {
         cases.setAttribute('class', 'right-stop')
-        cases.setAttribute('style', 'background-color:red;')
+
     }
     else if (i%20 == 1){
         cases.setAttribute('class', 'left-stop')
-        cases.setAttribute('style', 'background-color:green;')
     }
     if (i < 61 && i%20 < 13 && i%20 != 0) {
         cases.classList.add('alien')
@@ -54,19 +53,22 @@ function goRight() {
 let direction= 'right';
 
 function move() {
+    console.log(speed)
 
     //console.log("playing function")
 
     let num = document.getElementsByClassName('alien').length
     let aliens = document.getElementsByClassName('alien')
 
+    if (num < 1) {
+        alert('Vous avez gagné')
+        console.log('Vous avez gagné')
+        clearInterval(game)
+    }
+
     let cases = document.querySelectorAll('.case')
 
     console.log(num)
-
-    if (cases[239].classList.contains('alien')) {
-        return 0;
-    }
 
     for (let k = num-1; k >= 0; k--) {
 
@@ -126,11 +128,23 @@ function move() {
         goLeft();
 
     }
+
+    for (let i = 0; i < casesList.length; i++) {
+        if (casesList[i].classList.contains('tireur')) {
+            console.log(casesList[i].classList)
+        }
+        if ((casesList[i].classList.contains('tireur') && casesList[i].classList.contains('alien')) || (casesList[i].classList.contains('alien') && i > 220)) {
+            console.log('Vous avez perdu')
+            clearInterval(game)
+            lost = true;
+            alert('vous avez perdu')
+            break;
+        }
+    }
     
 }
 
-document.onkeydown = function (e) {
-
+function goUp() {
     let cases = document.querySelectorAll('.case')
 
     if (e.code == 'Space') {
@@ -150,20 +164,15 @@ function goUp() {
     let cases = document.querySelectorAll('.case')
     
     for(let j = 0; j < 20; j++) {
-        //for (let i = 0 ; i <= 239; i++) {
-
-            //if (cases.previousSibling) {
-            for (let k = 0; k < cases.length; k++) {
-                if (cases[k].classList.contains('laser')) {
-                    cases[k].classList.remove('laser')
-                    if (cases[k].previousElementSibling) {
-                        cases[k].previousElementSibling.classList.add('laser')
-                    }
-                    
+        for (let k = 0; k < cases.length; k++) {
+            if (cases[k].classList.contains('laser')) {
+                cases[k].classList.remove('laser')
+                if (cases[k].previousElementSibling) {
+                    cases[k].previousElementSibling.classList.add('laser')
                 }
+                
             }
-            //}
-        //}
+        }
     }
     
     for (let k = 0; k < cases.length; k++) {
@@ -176,27 +185,25 @@ function goUp() {
                 cases[k].classList.remove('boom')
            }, 200);
 
-            /*if (cases[k].previousElementSibling) {
-                cases[k].previousElementSibling.classList.add('')
-            }*/
         }
     }
 }
 
-/*function explosion(){
+console.log(window.location.href)
 
-    cases[k].classList.remove('alien')
-    cases[k].classList.remove('laser')
-    cases[k].classList.remove('boom')
+url = window.location.href;
 
+var speed;
 
-}*/
-
-
-
-
-
-
+if (url.includes('easy')) {
+    speed = 1000;
+}
+else if (url.includes('mid')) {
+    speed = 750;
+}
+else if (url.includes('hard')) {
+    speed = 500;
+}
 
 
 
@@ -204,7 +211,134 @@ let launcher = document.getElementById('button');
 
 
 launcher.addEventListener("click", () => {
-    setInterval(move, 1500)
+    launcher.style.display = 'none'
+    game = setInterval(move, speed)
+    movement()
 });
 
-//launcher.addEventListener('click', setInterval(move, 500))
+let stopper = document.getElementById('stop');
+
+stopper.addEventListener("click", () => {
+    clearInterval(game)
+});
+
+let replay = document.getElementById('play_again')
+
+replay.addEventListener("click", () => {
+    document.location.reload(false)
+})
+
+let casesList = document.querySelectorAll('.case')
+
+// PLAYER MOVEMENT
+
+function movement() {
+    let tireur = document.querySelector('.tireur')
+
+    document.onkeydown = function (e) {
+        let cases = document.querySelector('.tireur')
+
+        if (e.key == 'ArrowUp') {
+                for(let j = 0; j < 20; j++) {
+
+                    let cases = document.querySelector('.tireur')
+
+                    if (tireur.id >= 163){
+                
+                                cases.classList.remove('tireur')
+                                cases.previousElementSibling.classList.add('tireur')
+                                tireur.id = cases.id
+                    }        
+            }
+        }
+
+        if (e.key == 'ArrowDown') {
+            for(let j = 0; j < 20; j++) {
+
+                let cases = document.querySelector('.tireur')
+
+                if (tireur.id <= 238){
+                
+                    cases.classList.remove('tireur')
+                    cases.nextElementSibling.classList.add('tireur')
+                    tireur.id = cases.id
+                }
+            }
+        }
+
+        if (e.key == 'ArrowLeft') {
+            if (!cases.classList.contains('left-stop')){
+                cases.classList.remove('tireur')
+                cases.previousElementSibling.classList.add('tireur')
+            }
+        }
+
+        if (e.key == 'ArrowRight'){
+            if (!cases.classList.contains('right-stop')){
+                cases.classList.remove('tireur')
+                cases.nextElementSibling.classList.add('tireur')
+            }
+        }
+
+        if (e.code == 'Space') {
+            console.log(e.code)
+            let cases = document.querySelectorAll('.case')
+
+            for (let i = 0; i < cases.length; i++) {
+                if (cases[i].classList.contains('tireur')) {
+                    cases[i].classList.add('laser')
+                }
+            }
+            setInterval(goUp, 600)
+        }
+    };
+}
+
+
+// RICK ROLL
+
+var code = [];
+const rightCode = ["UP", "DOWN", "LEFT", "RIGHT", "RIGHT", "LEFT", "DOWN", "UP"];
+var verif = [];
+
+console.log(rightCode)
+console.log(code)
+
+function isEqual(tableau1, tableau2) {
+    return tableau1.every((value, index) => value === tableau2[index])
+  }
+
+document.onkeydown = function (f) {
+    if (f.key == 'ArrowUp') {
+        code.push("UP")
+        console.log(code)
+
+    }
+    if (f.key == 'ArrowDown') {
+        code.push("DOWN")
+        console.log(code)
+    }
+    if (f.key == 'ArrowRight') {
+        code.push("RIGHT")
+        console.log(code)
+    }
+    if (f.key == 'ArrowLeft') {
+        code.push("LEFT")
+        console.log(code)
+    }
+    if (code.length == rightCode.length) {
+        if (isEqual(code, rightCode) == true){
+            alert("vous avez trouvé le niveau secret")
+            for (let f = 0; f < rightCode.length; f++){
+                code.pop()
+            }
+        }
+        else {
+            for (let f = 0; f < rightCode.length; f++){
+                code.pop()
+            }
+            console.log(code)
+            alert("tu t'es trompé")
+        }
+    }
+}
