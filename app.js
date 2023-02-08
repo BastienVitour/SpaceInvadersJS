@@ -175,6 +175,7 @@ let launcher = document.getElementById('button');
 launcher.addEventListener("click", () => {
     launcher.style.display = 'none'
     game = setInterval(move, speed)
+    movement()
 });
 
 let stopper = document.getElementById('stop');
@@ -193,69 +194,113 @@ let casesList = document.querySelectorAll('.case')
 
 // PLAYER MOVEMENT
 
-let tireur = document.querySelector('.tireur')
+function movement() {
+    let tireur = document.querySelector('.tireur')
 
-document.onkeydown = function (e) {
-    let cases = document.querySelector('.tireur')
+    document.onkeydown = function (e) {
+        let cases = document.querySelector('.tireur')
 
-    if (e.key == 'ArrowUp') {
+        if (e.key == 'ArrowUp') {
+                for(let j = 0; j < 20; j++) {
+
+                    let cases = document.querySelector('.tireur')
+
+                    if (tireur.id >= 163){
+                
+                                cases.classList.remove('tireur')
+                                cases.previousElementSibling.classList.add('tireur')
+                                tireur.id = cases.id
+                    }        
+            }
+        }
+
+        if (e.key == 'ArrowDown') {
             for(let j = 0; j < 20; j++) {
 
                 let cases = document.querySelector('.tireur')
 
-                if (tireur.id >= 163){
-            
-                            cases.classList.remove('tireur')
-                            cases.previousElementSibling.classList.add('tireur')
-                            tireur.id = cases.id
-                }        
-        }
-    }
-
-    if (e.key == 'ArrowDown') {
-        for(let j = 0; j < 20; j++) {
-
-            let cases = document.querySelector('.tireur')
-
-            console.log(tireur.id)
-            if (tireur.id <= 238){
-            
-                console.log(tireur.id)
-                cases.classList.remove('tireur')
-                cases.nextElementSibling.classList.add('tireur')
-                tireur.id = cases.id
-                console.log(tireur.id)
-    }               
-        }
-    }
-
-    if (e.key == 'ArrowLeft') {
-        if (!cases.classList.contains('left-stop')){
-            cases.classList.remove('tireur')
-            cases.previousElementSibling.classList.add('tireur')
-        }
-    }
-
-    if (e.key == 'ArrowRight'){
-        if (!cases.classList.contains('right-stop')){
-            cases.classList.remove('tireur')
-            cases.nextElementSibling.classList.add('tireur')
-        }
-    }
-
-    if (e.code == 'Space') {
-        console.log(e.code)
-        let cases = document.querySelectorAll('.case')
-
-        for (let i = 0; i < cases.length; i++) {
-            if (cases[i].classList.contains('tireur')) {
-                cases[i].classList.add('laser')
+                if (tireur.id <= 238){
+                
+                    cases.classList.remove('tireur')
+                    cases.nextElementSibling.classList.add('tireur')
+                    tireur.id = cases.id
+                }
             }
         }
 
-        setInterval(goUp, 600)
+        if (e.key == 'ArrowLeft') {
+            if (!cases.classList.contains('left-stop')){
+                cases.classList.remove('tireur')
+                cases.previousElementSibling.classList.add('tireur')
+            }
+        }
+
+        if (e.key == 'ArrowRight'){
+            if (!cases.classList.contains('right-stop')){
+                cases.classList.remove('tireur')
+                cases.nextElementSibling.classList.add('tireur')
+            }
+        }
+
+        if (e.code == 'Space') {
+            console.log(e.code)
+            let cases = document.querySelectorAll('.case')
+
+            for (let i = 0; i < cases.length; i++) {
+                if (cases[i].classList.contains('tireur')) {
+                    cases[i].classList.add('laser')
+                }
+            }
+            setInterval(goUp, 600)
+        }
+    };
+}
+
+
+// RICK ROLL
+
+var code = [];
+const rightCode = ["UP", "DOWN", "LEFT", "RIGHT", "RIGHT", "LEFT", "DOWN", "UP"];
+var verif = [];
+
+console.log(rightCode)
+console.log(code)
+
+function isEqual(tableau1, tableau2) {
+    return tableau1.every((value, index) => value === tableau2[index])
+  }
+
+document.onkeydown = function (f) {
+    if (f.key == 'ArrowUp') {
+        code.push("UP")
+        console.log(code)
 
     }
-};
-
-// RELOAD THE GAME 
+    if (f.key == 'ArrowDown') {
+        code.push("DOWN")
+        console.log(code)
+    }
+    if (f.key == 'ArrowRight') {
+        code.push("RIGHT")
+        console.log(code)
+    }
+    if (f.key == 'ArrowLeft') {
+        code.push("LEFT")
+        console.log(code)
+    }
+    if (code.length == rightCode.length) {
+        if (isEqual(code, rightCode) == true){
+            alert("vous avez trouvé le niveau secret")
+            for (let f = 0; f < rightCode.length; f++){
+                code.pop()
+            }
+        }
+        else {
+            for (let f = 0; f < rightCode.length; f++){
+                code.pop()
+            }
+            console.log(code)
+            alert("tu t'es trompé")
+        }
+    }
+}
