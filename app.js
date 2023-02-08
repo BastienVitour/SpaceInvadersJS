@@ -247,7 +247,7 @@ function movement() {
                     cases.classList.remove('tireur')
                     cases.nextElementSibling.classList.add('tireur')
                     tireur.id = cases.id
-        }               
+                }
             }
         }
 
@@ -274,9 +274,7 @@ function movement() {
                     cases[i].classList.add('laser')
                 }
             }
-
             setInterval(goUp, 600)
-
         }
     };
 }
@@ -286,9 +284,14 @@ function movement() {
 
 var code = [];
 const rightCode = ["UP", "DOWN", "LEFT", "RIGHT", "RIGHT", "LEFT", "DOWN", "UP"];
+var verif = [];
 
 console.log(rightCode)
 console.log(code)
+
+function isEqual(tableau1, tableau2) {
+    return tableau1.every((value, index) => value === tableau2[index])
+  }
 
 document.onkeydown = function (f) {
     if (f.key == 'ArrowUp') {
@@ -309,19 +312,15 @@ document.onkeydown = function (f) {
         console.log(code)
     }
     if (code.length == rightCode.length) {
-        alert("même taille")
-        for (let i = 0; i < code.length; i++) {
-            if (code[i] == rightCode[i]) {
-                console.log("good")
+        if (isEqual(code, rightCode) == true){
+            alert("vous avez trouvé le niveau secret")
+        }
+        else {
+            for (let f = 0; f < rightCode.length; f++){
+                code.pop()
             }
-            else {
-                console.log("pas good " + code)
-                for (let f = 0; f < rightCode.length; f++){
-                    code.pop()
-                }
-                console.log(code)
-                break 
-            }
+            console.log(code)
+            alert("tu t'es trompé")
         }
     }
 }
