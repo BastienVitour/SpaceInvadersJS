@@ -1,4 +1,3 @@
-
 .grille {
     display: flex;
     flex-wrap: wrap;
@@ -47,8 +46,19 @@ h1 {
     background-position: center;
     background-size: contain;
 }
+.secret_tireur {
+    background: url(ressources/morty2.png);
+    transform: rotate(180deg);
+    background-position: center;
+    background-size: contain;
+}
 .alien {
     background: url(ressources/ennemies.png);
+    background-position: center;
+    background-size: contain;
+}
+.secret_alien {
+    background: url(ressources/rick.gif);
     background-position: center;
     background-size: contain;
 }
@@ -58,6 +68,11 @@ h1 {
 .laser {
     background: url(ressources/missile.png);
     transform: rotate(90deg);
+    background-position: center;
+    background-size: contain;
+}
+.secret_laser {
+    background: url(ressources/microphone.png);
     background-position: center;
     background-size: contain;
 }
