@@ -54,10 +54,11 @@ function goRight() {
 }
 
 let direction= 'right';
-var lost = false;
+var down = true;
 
 function move() {
-    console.log(speed)
+    console.log(down)
+    //console.log(speed)
 
     let num = document.getElementsByClassName('alien').length
     let aliens = document.getElementsByClassName('alien')
@@ -70,18 +71,40 @@ function move() {
         replay.style.display = 'inline'
     }
 
+    for (let i = 0; i < casesList.length; i++) {
+        if (casesList[i].classList.contains('tireur')) {
+            //console.log(casesList[i].classList)
+        }
+        if ((casesList[i].classList.contains('tireur') && casesList[i].classList.contains('alien')) || (casesList[i].classList.contains('alien') && i > 220)) {
+            console.log('Vous avez perdu')
+            clearInterval(game)
+            lost = true;
+            alert('vous avez perdu')
+            let replay = document.getElementById('play_again')
+            replay.style.display = 'inline'
+            break;
+        }
+    }
+
     let cases = document.querySelectorAll('.case')
 
-    console.log(num)
+    //console.log(num)
 
     for (let k = num-1; k >= 0; k--) {
 
-
         if (aliens[k].classList.contains('right-stop')) {
             
-            for(let j = 0; j < 20; j++) {
-                goRight()
-            }            
+            if (down) {
+                for(let j = 0; j <= 20; j++) {
+                    goRight()
+                }
+                down = false;
+            }
+
+            setTimeout(() => {
+                down = true;
+            }, speed);
+                      
             direction = 'left';
             break;  
             
@@ -89,9 +112,16 @@ function move() {
 
         else if (aliens[k].classList.contains('left-stop') && !cases[0].classList.contains('alien')) {
 
-            for(let j = 0; j < 20; j++) {
-                goRight()
+            if (down) {
+                for(let j = 0; j < 19; j++) {
+                    goRight()
+                }
+                down = false;
             }
+
+            setTimeout(() => {
+                down = true
+            }, speed);
 
         direction = 'right';
         break;
@@ -109,21 +139,6 @@ function move() {
 
         goLeft();
 
-    }
-
-    for (let i = 0; i < casesList.length; i++) {
-        if (casesList[i].classList.contains('tireur')) {
-            console.log(casesList[i].classList)
-        }
-        if ((casesList[i].classList.contains('tireur') && casesList[i].classList.contains('alien')) || (casesList[i].classList.contains('alien') && i > 220)) {
-            console.log('Vous avez perdu')
-            clearInterval(game)
-            lost = true;
-            alert('vous avez perdu')
-            let replay = document.getElementById('play_again')
-            replay.style.display = 'inline'
-            break;
-        }
     }
     
 }
@@ -264,11 +279,10 @@ function movement() {
     };
 }
 
-
 // RICK ROLL
 
 var code = [];
-const rightCode = ["UP", "DOWN", "LEFT", "RIGHT", "RIGHT", "LEFT", "DOWN", "UP"];
+const rightCode = ["UP", "UP", "DOWN", "DOWN", "LEFT", "RIGHT", "LEFT", "RIGHT", "B", "A"];
 var verif = [];
 
 console.log(rightCode)
@@ -296,6 +310,15 @@ document.onkeydown = function (f) {
         code.push("LEFT")
         console.log(code)
     }
+    if (f.key == 'b') {
+        code.push("B")
+        console.log(code)
+    }
+    if (f.key == 'a') {
+        code.push("A")
+        console.log(code)
+    }
+    
     if (code.length == rightCode.length) {
         if (isEqual(code, rightCode) == true){
             alert("vous avez trouvé le niveau secret")
