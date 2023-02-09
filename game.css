@@ -64,7 +64,6 @@ header{
 }
 .tireur {
     background: url(ressources/space-invaders.png);
-    /*transform: rotate(180deg);*/
     background-position: center;
     background-size: contain;
 }
@@ -79,7 +78,9 @@ header{
     width: 100px;
 }
 .boom {
-    background-color: red;
+    background: url(ressources/explosion.png);
+    background-position: center;
+    background-size: contain; 
 }
 .laser {
     background: url(ressources/missile.png);
