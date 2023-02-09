@@ -1,5 +1,7 @@
 body {
-    background-image: url("/ressources/GIF/giphy.gif");
+    color: white;
+    font-family: 'minecraft', 'sans-serif';
+    background-color: black;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -21,7 +23,7 @@ header{
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    border: 1px solid #000;
+    border: 1px solid #ffffff;
     width: 500px;
     height: 500px;
     margin: 0 auto;
@@ -98,6 +100,7 @@ button, .chosen-diff {
 .main {
     display: flex;
     flex-direction: column;
+    text-align: center;
 }
 
 #launch{
@@ -129,6 +132,6 @@ input[type='radio'] {
 }
 
 h3 {
-    color: white;
-    font-family: 'minecraft', 'sans-serif';
+    width: 50%;
+    margin: 0vh auto 6vh;
 }
