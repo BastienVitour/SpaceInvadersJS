@@ -1,3 +1,6 @@
+#body {
+    background: url(ressources/rick_background.gif);
+}
 .grille {
     display: flex;
     flex-wrap: wrap;
