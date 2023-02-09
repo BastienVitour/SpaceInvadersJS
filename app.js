@@ -61,8 +61,35 @@ function move() {
     let aliens = document.getElementsByClassName('alien')
 
     if (num < 1) {
-        alert('Vous avez gagné')
-        console.log('Vous avez gagné')
+        let grille = document.querySelector('.grille')
+        grille.style.visibility = "hidden"
+        grille.style.display = "none"
+
+        let victory = document.querySelector('.victoire')
+        victory.style.visibility = "visible"
+        victory.style.display = "flex"
+
+        var gagner = new Audio("ressources/victoire.mp3")
+
+        gagner.play()
+        audio.pause()
+        setTimeout(() => {
+            audio.play()
+            gagner.pause()
+        },14700);
+
+        let message = document.getElementById('secret_word')
+        message.style.visibility = "visible"
+
+        if (url.includes('easy')) {
+            message.innerHTML = 'Vous devriez retenir CA : KO'
+        }
+        else if (url.includes('mid')) {
+            message.innerHTML = 'Vous devriez retenir CA : NA'
+        }
+        else if (url.includes('hard')) {
+            message.innerHTML = 'Vous devriez retenir CA : MI'
+        }
         let precision = ((ennemiesDestroyed/numberOfShots)*100).toFixed(1)
         console.log("Précision : " + precision + "%")
         clearInterval(game)
@@ -215,8 +242,6 @@ function goUp() {
     }
 }
 
-//console.log(window.location.href)
-
 url = window.location.href;
 
 var speed;
@@ -257,7 +282,6 @@ replay.addEventListener("click", () => {
 
 var audio = document.getElementById('audio');
 var playBtn = document.getElementById('playPause');
-//audio.volume = 2
 
 let count = 1;
 
@@ -378,9 +402,6 @@ var code = [];
 const rightCode = ["UP", "UP", "DOWN", "DOWN", "LEFT", "RIGHT", "LEFT", "RIGHT", "B", "A"];
 var verif = [];
 
-//console.log(rightCode)
-//console.log(code)
-
 function isEqual(tableau1, tableau2) {
     return tableau1.every((value, index) => value === tableau2[index])
   }
@@ -412,7 +433,6 @@ document.onkeydown = function (f) {
     if (code.length == rightCode.length) {
         if (isEqual(code, rightCode) == true){
             window.location.href = 'secret.html'
-            alert("vous avez trouvé le niveau secret")
             for (let f = 0; f < rightCode.length; f++){
                 code.pop()
             }
@@ -421,7 +441,6 @@ document.onkeydown = function (f) {
             for (let f = 0; f < rightCode.length; f++){
                 code.pop()
             }
-            alert("tu t'es trompé")
         }
     }
 }
