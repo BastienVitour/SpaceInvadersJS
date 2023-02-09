@@ -36,7 +36,7 @@ for (let i = 0; i < 10; i++) {
     if ('pseudo' + i in localStorage) {
         let pseudo = 'pseudo' + i.toString()
         let pseudoStr = document.querySelector('.'+pseudo)
-        pseudoStr.innerHTML = localStorage.getItem(pseudo)
+        pseudoStr.innerHTML = localStorage.getItem(pseudo).toUpperCase()
 
         let score = 'score' + i.toString()
         let scoreStr = document.querySelector('.'+score)

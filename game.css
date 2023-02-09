@@ -94,6 +94,45 @@ header{
     background-position: center;
     background-size: contain;
 }
+
+.pseudo {
+    display: none;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+
+    align-items: center;
+    border: 1px solid #ffffff;
+    width: 500px;
+    height: 400px;
+    margin: 0 auto;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    background-image: url("ressources/background-black.png");
+    background-position: center;
+    background-size: contain;
+}
+
+@font-face {
+	font-family: 'atari';
+	src: url('ressources/atari.ttf') format('truetype');
+}
+
+input {
+    background-color: rgb(71, 83, 94);
+    border: none;
+    height: 50%;
+    width: 50%;
+    color: white;
+    font-size: 10em;
+    /*letter-spacing: 15px;*/
+    font-family: 'atari';
+    text-transform:uppercase;
+}
+
+#send{
+    margin-top: 15px;
+}
+
 @keyframes background-defile {
     from {
         background-position-y: 0px;
@@ -184,10 +223,6 @@ button, .chosen-diff {
 }
 .buttons {
     margin-top: 2%;
-}
-
-input[type='radio'] {
-    appearance: none;
 }
 
 #play_again, #stop {

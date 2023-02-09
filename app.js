@@ -81,12 +81,24 @@ function move() {
 
         var gagner = new Audio("ressources/victoire.mp3")
 
+        
+
         gagner.play()
         audio.pause()
+        /*let inputPseudo = document.querySelector('.pseudo')
+        inputPseudo.style.visibility = "visible"
+        inputPseudo.style.display = "flex"
+        victory.style.visibility = "hidden"
+        victory.style.display = "none"*/
         setTimeout(() => {
             audio.play()
-            gagner.pause()
-        },14700);
+            //gagner.pause()
+            let inputPseudo = document.querySelector('.pseudo')
+            inputPseudo.style.visibility = "visible"
+            inputPseudo.style.display = "flex"
+            victory.style.visibility = "hidden"
+            victory.style.display = "none"
+        },5000);
 
         ///////// MORCEAU DE CODE POUR NIVEAU SECRET /////////
 
@@ -115,8 +127,15 @@ function move() {
         if ('score9' in localStorage) {
             if (score > localStorage.getItem('score9') || (precision > localStorage.getItem('precision9') && score >= localStorage.getItem('score9'))) {
                 
-                let name = prompt('Indiquez votre pseudo')
-                saveScore(score, precision, name)
+                //let name = prompt('Indiquez votre pseudo')
+                let sendBtn = document.getElementById('send')
+                let playerInput = document.getElementById('playerName')
+                sendBtn.addEventListener('click', function() {
+                    let name = playerInput.value
+                    saveScore(place, accuracy, pseudo, score, precision, name)
+                    document.location.reload(false)
+                })
+                
             }
             else {
                 alert("Vous n'êtes pas dans le top 10")
@@ -124,8 +143,13 @@ function move() {
             
         }
         else {
-            let name = prompt('Indiquez votre pseudo')
-            saveScore(score, precision, name)
+            let sendBtn = document.getElementById('send')
+            let playerInput = document.getElementById('playerName')
+            sendBtn.addEventListener('click', function() {
+                let name = playerInput.value
+                saveScore(place, accuracy, pseudo, score, precision, name)
+                document.location.reload(false)
+            })
         }
         
         
@@ -138,6 +162,23 @@ function move() {
     
     for (let i = 0; i < casesList.length; i++) {
         if ((casesList[i].classList.contains('tireur') && casesList[i].classList.contains('alien')) || (casesList[i].classList.contains('alien') && i > 220)) {
+
+            let grille = document.querySelector('.grille');
+            let lose = document.querySelector('.lose');
+            grille.style.display = 'none'
+            grille.classList.add('lose')
+            lose.style.display = 'flex'
+
+            setTimeout(() => {
+                audio.play()
+                //gagner.pause()
+                let inputPseudo = document.querySelector('.pseudo')
+                inputPseudo.style.visibility = "visible"
+                inputPseudo.style.display = "flex"
+                lose.style.visibility = "hidden"
+                lose.style.display = "none"
+            },5000);
+
             let precision = ((ennemiesDestroyed/numberOfShots)*100).toFixed(1)
             console.log("Précision : " + precision + "%")
             clearInterval(game)
@@ -149,8 +190,13 @@ function move() {
             let pseudo = 'pseudo0'
             if ('score9' in localStorage) {
                 if (score > localStorage.getItem('score9') || (precision > localStorage.getItem('precision9') && score >= localStorage.getItem('score9'))) {
-                    let name = prompt('Indiquez votre pseudo')
-                    saveScore(score, precision, name)
+                    let sendBtn = document.getElementById('send')
+                    let playerInput = document.getElementById('playerName')
+                    sendBtn.addEventListener('click', function() {
+                        let name = playerInput.value
+                        saveScore(place, accuracy, pseudo, score, precision, name)
+                        document.location.reload(false)
+                    })
                 }
                 else {
                     alert("Vous n'êtes pas dans le top 10")
@@ -158,14 +204,14 @@ function move() {
                 
             }
             else {
-                let name = prompt('Indiquez votre pseudo')
-                saveScore(score, precision, name)
+                let sendBtn = document.getElementById('send')
+                let playerInput = document.getElementById('playerName')
+                sendBtn.addEventListener('click', function() {
+                    let name = playerInput.value
+                    saveScore(place, accuracy, pseudo, score, precision, name)
+                    document.location.reload(false)
+                })
             }
-            let grille = document.querySelector('.grille');
-            let lose = document.querySelector('.lose');
-            grille.style.display = 'none'
-            grille.classList.add('lose')
-            lose.style.display = 'flex'
             
             var perdu = new Audio("ressources/Wasted.mp3")
 
@@ -534,7 +580,7 @@ document.onkeydown = function (f) {
     }
 }
 
-function saveScore (score, precision, name) {
+function saveScore (place, accuracy, pseudo, score, precision, name) {
     for (let i = 0; i < 10; i++) {
             
         place = 'score'
