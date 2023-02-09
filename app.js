@@ -102,6 +102,10 @@ function move() {
             grille.style.display = 'none'
             grille.classList.add('lose')
             lose.style.display = 'flex'
+            var perdu = new Audio("ressources/Wasted.mp3")
+
+            perdu.play();
+            audio.pause();
 
             break;
         }
@@ -420,11 +424,6 @@ document.onkeydown = function (f) {
             alert("tu t'es trompé")
         }
     }
-}
-
-
-function lose(){
-    cases.addEventListener()
 }
 
 setInterval(goUp, 200)
