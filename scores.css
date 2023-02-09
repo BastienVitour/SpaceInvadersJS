@@ -16,6 +16,11 @@ body {
     src: url('ressources/apache.ttf');
 }
 
+@font-face {
+    font-family: 'atari';
+    src: url('ressources/atari.ttf');
+}
+
 h1 {
     text-align: center;
     margin: 20px 0;
@@ -35,7 +40,7 @@ table {
 
 td, th {
     border: 1px solid white;
-    font-family: 'apache'
+    font-family: 'atari'
 }
 
 th {
