@@ -75,7 +75,8 @@ h1 {
     background-size: contain;
 }
 .secret_laser {
-    background: url(ressources/microphone.png);
+    background: url(ressources/rick-ornichon.png);
+    transform: rotate(-20deg);
     background-position: center;
     background-size: contain;
 }
