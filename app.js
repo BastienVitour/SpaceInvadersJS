@@ -1,3 +1,11 @@
+var url = window.location.href;
+var isSecret = url.includes('secret');
+
+if (isSecret){
+    let fond = document.getElementById('body');
+    fond.style.background = 'url(ressources/rick_background.gif)'
+}
+
 let grille = document.querySelector('.grille');
 let shooting = false;
 
@@ -12,10 +20,19 @@ for (let i=1; i<241; i++) {
     }
     if (i < 61 && i%20 < 13 && i%20 != 0) {
         cases.classList.add('alien')
+        if(isSecret) {
+            cases.classList.add('secret_alien')
+        }
     }
     
     if (i == 230) {
-        cases.classList.add('tireur')
+        if(isSecret) {
+            cases.classList.add('secret_tireur')
+        }
+        else {
+            cases.classList.add('tireur')
+        }
+       
     }
     cases.classList.add('case')
     cases.setAttribute('id', i)
@@ -28,6 +45,12 @@ function goLeft() {
         let cases = document.querySelectorAll('.case')[i]
 
         if (cases.previousSibling) {
+            if(isSecret) {
+                if (cases.classList.contains('secret_alien') && !cases.previousElementSibling.classList.contains('secret_alien')) {
+                    cases.classList.remove('secret_alien')
+                    cases.previousElementSibling.classList.add('secret_alien')
+                }
+            }
             if (cases.classList.contains('alien') && !cases.previousElementSibling.classList.contains('alien')) {
                 cases.classList.remove('alien')
                 cases.previousElementSibling.classList.add('alien')
@@ -43,6 +66,12 @@ function goRight() {
         let cases = document.querySelectorAll('.case')[i]
 
         if (cases.nextSibling) {
+            if(isSecret) {
+                if (cases.classList.contains('secret_alien') && !cases.nextElementSibling.classList.contains('secret_alien')) {
+                    cases.classList.remove('secret_alien')
+                    cases.nextElementSibling.classList.add('secret_alien')
+                }
+            }
             if (cases.classList.contains('alien') && !cases.nextElementSibling.classList.contains('alien')) {
                 cases.classList.remove('alien')
                 cases.nextElementSibling.classList.add('alien')
@@ -104,7 +133,18 @@ function move() {
             break;  
             
         }
+        if(isSecret) {
+            if (aliens[k].classList.contains('left-stop') && !cases[0].classList.contains('secret_alien')) {
 
+                for(let j = 0; j < 20; j++) {
+                    goRight()
+                }
+    
+            direction = 'right';
+            break;
+    
+            }
+        }
         else if (aliens[k].classList.contains('left-stop') && !cases[0].classList.contains('alien')) {
 
             if (down) {
@@ -177,6 +217,15 @@ function goUp() {
                 }
                 
             }
+            if(isSecret) { 
+                if (cases[k].classList.contains('secret_laser')) {
+                    cases[k].classList.remove('secret_laser')
+                    if (cases[k].previousElementSibling) {
+                        cases[k].previousElementSibling.classList.add('secret_laser')
+                    }
+                    
+                }
+            }
         }
     }
     
@@ -215,13 +264,16 @@ url = window.location.href;
 var speed;
 
 if (url.includes('easy')) {
-    speed = 1000;
-}
-else if (url.includes('mid')) {
     speed = 750;
 }
-else if (url.includes('hard')) {
+else if (url.includes('mid')) {
     speed = 500;
+}
+else if (url.includes('hard')) {
+    speed = 250;
+}
+else if (isSecret) {
+    speed = 250;
 }
 
 let launcher = document.getElementById('button');
@@ -231,7 +283,12 @@ launcher.addEventListener("click", () => {
     launcher.style.display = 'none'
     stopper.style.display = 'inline'
     game = setInterval(move, speed)
-    movement()
+    if (isSecret){
+        secretMovement()
+    }
+    else {
+        movement()
+    }
 });
 
 stopper.addEventListener("click", () => {
@@ -365,16 +422,13 @@ function isEqual(tableau1, tableau2) {
 document.onkeydown = function (f) {
     if (f.key == 'ArrowUp') {
         code.push("UP")
-        console.log(code)
 
     }
     if (f.key == 'ArrowDown') {
         code.push("DOWN")
-        console.log(code)
     }
     if (f.key == 'ArrowRight') {
         code.push("RIGHT")
-        console.log(code)
     }
     if (f.key == 'ArrowLeft') {
         code.push("LEFT")
@@ -391,6 +445,7 @@ document.onkeydown = function (f) {
 
     if (code.length == rightCode.length) {
         if (isEqual(code, rightCode) == true){
+            window.location.href = 'secret.html'
             alert("vous avez trouvé le niveau secret")
             for (let f = 0; f < rightCode.length; f++){
                 code.pop()
@@ -400,7 +455,6 @@ document.onkeydown = function (f) {
             for (let f = 0; f < rightCode.length; f++){
                 code.pop()
             }
-            console.log(code)
             alert("tu t'es trompé")
         }
     }
