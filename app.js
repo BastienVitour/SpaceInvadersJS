@@ -7,7 +7,6 @@ for (let i=1; i<241; i++) {
     let cases = document.createElement('div');
     if (i%20 == 0) {
         cases.setAttribute('class', 'right-stop')
-
     }
     else if (i%20 == 1){
         cases.setAttribute('class', 'left-stop')
@@ -62,14 +61,29 @@ function move() {
     let aliens = document.getElementsByClassName('alien')
 
     if (num < 1) {
-        //alert('Vous avez gagné')
+        alert('Vous avez gagné')
         console.log('Vous avez gagné')
-        let precision = (ennemiesDestroyed/numberOfShots)*100
-        console.log("Précision : " + precision.toFixed(1) + "%")
+        let precision = ((ennemiesDestroyed/numberOfShots)*100).toFixed(1)
+        console.log("Précision : " + precision + "%")
         clearInterval(game)
         let replay = document.getElementById('play_again')
         replay.style.display = 'inline'
         stopper.style.display = 'none'
+        let place = 'score'
+        let accuracy = 'precision'
+        let number = 0
+        while (place in localStorage) {
+            place = 'score'
+            accuracy = 'precision'
+            place = place + number.toString()
+            accuracy = accuracy + number.toString()
+            number ++
+            console.log(place)
+            console.log(accuracy)
+            console.log(score)
+        }
+        localStorage.setItem(place, JSON.stringify(score))
+        localStorage.setItem(accuracy, JSON.stringify(precision))
     }
 
     for (let i = 0; i < casesList.length; i++) {
@@ -142,27 +156,6 @@ function move() {
 
 var explosion = new Audio("ressources/explosion.mp3")
 var score = 0
-
-/*function goUp() {
-    let cases = document.querySelectorAll('.case')
-
-    if (e.code == 'Space') {
-        if(!shooting){
-            shooting = true;
-            setTimeout(function(){
-                shooting = false;
-            },1000);
-    
-
-            for (let i = 0; i < cases.length; i++) {
-                if (cases[i].classList.contains('tireur')) {
-                    cases[i].classList.add('laser')
-                }
-            }
-        }
-    }
-    setInterval(goUp, 500);
-};*/
 
 let ennemiesDestroyed = 0;
 
@@ -249,6 +242,26 @@ let replay = document.getElementById('play_again')
 replay.addEventListener("click", () => {
     document.location.reload(false)
 })
+
+var audio = document.getElementById('audio');
+var playBtn = document.getElementById('playPause');
+//audio.volume = 2
+
+let count = 1;
+
+function playPause(){
+    console.log(count)
+    if(count == 0){
+        count = 1;
+        audio.play();
+        playBtn.innerHTML = "Music ON"
+    }
+    else{
+        count = 0
+        audio.pause();
+        playBtn.innerHTML = "Music OFF"
+    }
+}
 
 let casesList = document.querySelectorAll('.case')
 

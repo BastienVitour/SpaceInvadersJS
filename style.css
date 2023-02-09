@@ -63,12 +63,7 @@ h1 {
     background-position: center;
     background-size: contain;
 }
-.secret_tireur {
-    background: url(ressources/morty2.png);
-    transform: rotate(180deg);
-    background-position: center;
-    background-size: contain;
-}
+
 .alien {
     background: url(ressources/ennemies.png);
     background-position: center;

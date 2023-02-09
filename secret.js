@@ -209,27 +209,6 @@ function move() {
 var explosion = new Audio("ressources/explosion.mp3")
 var score = 0
 
-/*function goUp() {
-    let cases = document.querySelectorAll('.case')
-
-    if (e.code == 'Space') {
-        if(!shooting){
-            shooting = true;
-            setTimeout(function(){
-                shooting = false;
-            },1000);
-    
-
-            for (let i = 0; i < cases.length; i++) {
-                if (cases[i].classList.contains('tireur')) {
-                    cases[i].classList.add('laser')
-                }
-            }
-        }
-    }
-    setInterval(goUp, 500);
-};*/
-
 let ennemiesDestroyed = 0
 let goodShots = 0
 
@@ -308,6 +287,25 @@ let replay = document.getElementById('play_again')
 replay.addEventListener("click", () => {
     document.location.reload(false)
 })
+
+var audio = document.getElementById('audio');
+var playBtn = document.getElementById('playPause');
+
+let count = 1;
+
+function playPause(){
+    console.log(count)
+    if(count == 0){
+        count = 1;
+        audio.play();
+        playBtn.innerHTML = "Music ON"
+    }
+    else{
+        count = 0
+        audio.pause();
+        playBtn.innerHTML = "Music OFF"
+    }
+}
 
 let casesList = document.querySelectorAll('.case')
 
@@ -396,19 +394,7 @@ function movement() {
                 }
             }
         }
-
-        /*if (e.code == 'Space') {
-            console.log(e.code)
-            let cases = document.querySelectorAll('.case')
-
-            for (let i = 0; i < cases.length; i++) {
-                if (cases[i].classList.contains('secret_tireur')) {
-                    cases[i].classList.add('secret_laser')
-                }
-            }
-            setInterval(goUp, 600)
-        }*/
-    };
+    }
 }
 
 function pause() {
