@@ -1,3 +1,22 @@
+var audio = document.getElementById('audio');
+var playBtn = document.getElementById('playPause');
+
+let count = 0;
+
+function playPause(){
+    console.log(count)
+    if(count == 0){
+        count = 1;
+        audio.play();
+        playBtn.innerHTML = "Music ON"
+    }
+    else{
+        count = 0
+        audio.pause();
+        playBtn.innerHTML = "Music OFF"
+    }
+}
+
 var url = window.location.href;
 var isSecret = url.includes('secret');
 
@@ -255,10 +274,10 @@ else if (url.includes('mid')) {
     speed = 500;
 }
 else if (url.includes('hard')) {
-    speed = 250;
+    speed = 170;
 }
 else if (isSecret) {
-    speed = 250;
+    speed = 230;
 }
 
 var game;
@@ -446,7 +465,7 @@ document.onkeydown = function (f) {
     }
     if (code.length == rightCode.length) {
         if (isEqual(code, rightCode) == true){
-            window.location.href = 'game.html?diff=secret'
+            window.location.href = 'secret.html'
             alert("vous avez trouvé le niveau secret")
             for (let f = 0; f < rightCode.length; f++){
                 code.pop()

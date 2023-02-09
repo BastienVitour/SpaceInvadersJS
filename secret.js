@@ -1,3 +1,22 @@
+var audio = document.getElementById('audio');
+var playBtn = document.getElementById('playPause');
+
+let count = 0;
+
+function playPause(){
+    console.log(count)
+    if(count == 0){
+        count = 1;
+        audio.play();
+        playBtn.innerHTML = "Music ON"
+    }
+    else{
+        count = 0
+        audio.pause();
+        playBtn.innerHTML = "Music OFF"
+    }
+}
+
 let fond = document.getElementById('body');
 fond.style.background = 'url(ressources/rick_background.gif)'
 
