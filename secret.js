@@ -114,7 +114,15 @@ function move() {
         //    console.log(casesList[i].classList)
         //}
         if ((casesList[i].classList.contains('secret_tireur') && casesList[i].classList.contains('alien')) || (casesList[i].classList.contains('alien') && i > 220)) {
-            console.log('Vous avez perdu')
+            var perdu = new Audio("ressources/Loose_Secret.mp3")
+
+            perdu.play();
+            audio.pause();
+
+            setTimeout(() => {
+                audio.play()
+            },3100);
+
             let precision = (goodShots/numberOfShots)*100
             console.log("Précision : " + precision.toFixed(1) + "%")
             clearInterval(game)

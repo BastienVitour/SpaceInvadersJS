@@ -129,6 +129,7 @@ function move() {
             grille.style.display = 'none'
             grille.classList.add('lose')
             lose.style.display = 'flex'
+            
             var perdu = new Audio("ressources/Wasted.mp3")
 
             perdu.play();
@@ -253,7 +254,7 @@ else if (url.includes('mid')) {
     speed = 500;
 }
 else if (url.includes('hard')) {
-    speed = 250;
+    speed = 300;
 }
 
 let launcher = document.getElementById('button');
