@@ -288,8 +288,14 @@ var game;
 
 let launcher = document.getElementById('button');
 let stopper = document.getElementById('stop');
+let returner = document.getElementById('return')
+
+returner.addEventListener("click", () => {
+    window.location.href = 'index.html'
+});
 
 launcher.addEventListener("click", () => {
+    returner.style.display = 'none'
     launcher.style.display = 'none'
     stopper.style.display = 'inline'
     game = setInterval(move, 600)

@@ -114,6 +114,7 @@ function move() {
     }
 
     
+    let casesList = document.querySelectorAll('.case')
     
     for (let i = 0; i < casesList.length; i++) {
         if ((casesList[i].classList.contains('tireur') && casesList[i].classList.contains('alien')) || (casesList[i].classList.contains('alien') && i > 220)) {
@@ -257,10 +258,16 @@ else if (url.includes('hard')) {
     speed = 300;
 }
 
-let launcher = document.getElementById('button');
+let launcher = document.getElementById('launch');
 let stopper = document.getElementById('stop');
+let returner = document.getElementById('return')
+
+returner.addEventListener("click", () => {
+    window.location.href = 'index.html'
+});
 
 launcher.addEventListener("click", () => {
+    returner.style.display = 'none'
     launcher.style.display = 'none'
     stopper.style.display = 'inline'
     game = setInterval(move, speed)
@@ -299,8 +306,6 @@ function playPause(){
         playBtn.innerHTML = "Music OFF"
     }
 }
-
-let casesList = document.querySelectorAll('.case')
 
 // PLAYER MOVEMENT
 var laserShoot = new Audio("ressources/laser.mp3");
