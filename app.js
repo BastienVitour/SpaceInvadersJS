@@ -71,6 +71,9 @@ function move() {
     ///////// VÉRIFIFCATION DE LA VICTOIRE /////////
 
     if (num < 1) {
+
+        let precision = ((ennemiesDestroyed/numberOfShots)*100).toFixed(1)
+
         let grille = document.querySelector('.grille')
         grille.style.visibility = "hidden"
         grille.style.display = "none"
@@ -81,7 +84,7 @@ function move() {
 
         var gagner = new Audio("ressources/victoire.mp3")
 
-        
+        console.log('here we go again')
 
         gagner.play()
         audio.pause()
@@ -90,15 +93,36 @@ function move() {
         inputPseudo.style.display = "flex"
         victory.style.visibility = "hidden"
         victory.style.display = "none"*/
-        setTimeout(() => {
-            audio.play()
+        if ('score9' in localStorage) {
+            if (score > localStorage.getItem('score9') || (precision > localStorage.getItem('precision9') && score >= localStorage.getItem('score9'))) {
+        
+                setTimeout(() => {
+                    //audio.play()
+                    //gagner.pause()
+                    let inputPseudo = document.querySelector('.pseudo')
+                    inputPseudo.style.visibility = "visible"
+                    inputPseudo.style.display = "flex"
+                    victory.style.visibility = "hidden"
+                    victory.style.display = "none"
+                },5000);
+            }
+            else {
+                setTimeout(function () {
+                    alert("Vous n'êtes pas dans le top 10")
+                }, 5000)
+               
+            }
+        }
+        /*setTimeout(() => {
+            //audio.play()
             //gagner.pause()
             let inputPseudo = document.querySelector('.pseudo')
             inputPseudo.style.visibility = "visible"
             inputPseudo.style.display = "flex"
             victory.style.visibility = "hidden"
             victory.style.display = "none"
-        },5000);
+        },5000);*/
+        
 
         ///////// MORCEAU DE CODE POUR NIVEAU SECRET /////////
 
@@ -115,7 +139,7 @@ function move() {
             message.innerHTML = 'Vous devriez retenir CA : MI'
         }
 
-        let precision = ((ennemiesDestroyed/numberOfShots)*100).toFixed(1)
+        
         console.log("Précision : " + precision + "%")
         clearInterval(game)
         let replay = document.getElementById('play_again')
@@ -137,9 +161,9 @@ function move() {
                 })
                 
             }
-            else {
-                alert("Vous n'êtes pas dans le top 10")
-            }
+            //else {
+            //    alert("Vous n'êtes pas dans le top 10")
+            //}
             
         }
         else {
@@ -169,15 +193,26 @@ function move() {
             grille.classList.add('lose')
             lose.style.display = 'flex'
 
-            setTimeout(() => {
-                audio.play()
-                //gagner.pause()
-                let inputPseudo = document.querySelector('.pseudo')
-                inputPseudo.style.visibility = "visible"
-                inputPseudo.style.display = "flex"
-                lose.style.visibility = "hidden"
-                lose.style.display = "none"
-            },5000);
+            if ('score9' in localStorage) {
+                if (score > localStorage.getItem('score9') || (precision > localStorage.getItem('precision9') && score >= localStorage.getItem('score9'))) {
+            
+                    setTimeout(() => {
+                        //audio.play()
+                        //gagner.pause()
+                        let inputPseudo = document.querySelector('.pseudo')
+                        inputPseudo.style.visibility = "visible"
+                        inputPseudo.style.display = "flex"
+                        lose.style.visibility = "hidden"
+                        lose.style.display = "none"
+                    },5000);
+                }
+                else {
+                    setTimeout(function () {
+                        alert("Vous n'êtes pas dans le top 10")
+                    }, 5000)
+                   
+                }
+            }
 
             let precision = ((ennemiesDestroyed/numberOfShots)*100).toFixed(1)
             console.log("Précision : " + precision + "%")
