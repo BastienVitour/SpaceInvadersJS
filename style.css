@@ -56,7 +56,10 @@ h1 {
     width: 100px;
 }
 .boom {
-    background-color: red;
+    background: url(ressources/explosion.png);
+    background-position: center;
+    background-size: contain;
+    /*background-color: red;*/
 }
 .laser {
     background: url(ressources/missile.png);
@@ -96,4 +99,24 @@ input[type='radio'] {
 h3 {
     color: white;
     font-family: 'minecraft', 'sans-serif';
+}
+
+#easy-choice:hover {
+    box-shadow: 0px 0px 5px 5px darkgreen;
+    transition: 0.25s;
+}
+
+#mid-choice:hover {
+    box-shadow: 0px 0px 5px 5px goldenrod;
+    transition: 0.25s;
+}
+
+#hard-choice:hover {
+    box-shadow: 0px 0px 5px 5px darkred;
+    transition: 0.35s;
+}
+
+#launch {
+    font-size: 2em;
+    padding: 30px;
 }

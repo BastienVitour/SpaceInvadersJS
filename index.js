@@ -14,10 +14,6 @@ hardBtn.addEventListener('click', () => {
 
 function choose(diff) {
 
-    //let diff = document.querySelector('input[name="diff"]:checked').value;
-
-    //console.log(diff)
-
     switch (diff) {
         case 'easy':
             easyBtn.style.backgroundColor = 'green'
@@ -47,8 +43,8 @@ launch.addEventListener('click', launchGame)
 
 function launchGame() {
     var diff = document.querySelector('input[name="diff"]:checked');
-    //console.log(diff.value)
     if (diff == null) {
+        alert('Vous devez choisir une difficulté')
         console.log('ceci est null')
     }
     else if (diff.value == 'easy') {

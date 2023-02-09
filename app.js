@@ -60,8 +60,10 @@ function move() {
     let aliens = document.getElementsByClassName('alien')
 
     if (num < 1) {
-        alert('Vous avez gagné')
+        //alert('Vous avez gagné')
         console.log('Vous avez gagné')
+        let precision = (ennemiesDestroyed/numberOfShots)*100
+        console.log("Précision : " + precision.toFixed(1) + "%")
         clearInterval(game)
         let replay = document.getElementById('play_again')
         replay.style.display = 'inline'
@@ -71,9 +73,9 @@ function move() {
     for (let i = 0; i < casesList.length; i++) {
         if ((casesList[i].classList.contains('tireur') && casesList[i].classList.contains('alien')) || (casesList[i].classList.contains('alien') && i > 220)) {
             console.log('Vous avez perdu')
+            let precision = (ennemiesDestroyed/numberOfShots)*100
+            console.log("Précision : " + precision.toFixed(1) + "%")
             clearInterval(game)
-            lost = true;
-            alert('vous avez perdu')
             let replay = document.getElementById('play_again')
             replay.style.display = 'inline'
             stopper.style.display = 'none'
@@ -160,6 +162,7 @@ function goUp() {
     setInterval(goUp, 500);
 };
 
+let ennemiesDestroyed = 0;
 
 function goUp() {
 
@@ -196,6 +199,9 @@ function goUp() {
                     score += 300;
                 }
                 document.getElementById('score').innerText = "Score : " + score
+                ennemiesDestroyed ++;
+                console.log("Shots fired : " + numberOfShots)
+                console.log("Ennemies destroyed : " + ennemiesDestroyed)
            }, 100);
             
         }
@@ -220,7 +226,6 @@ else if (url.includes('hard')) {
 
 let launcher = document.getElementById('button');
 let stopper = document.getElementById('stop');
-
 
 launcher.addEventListener("click", () => {
     launcher.style.display = 'none'
@@ -248,6 +253,8 @@ let casesList = document.querySelectorAll('.case')
 // PLAYER MOVEMENT
 var laserShoot = new Audio("ressources/laser.mp3");
 
+var numberOfShots = 0;
+
 function movement() {
     let tireur = document.querySelector('.tireur')
 
@@ -255,16 +262,16 @@ function movement() {
         let cases = document.querySelector('.tireur')
 
         if (e.key == 'ArrowUp') {
-                for(let j = 0; j < 20; j++) {
+            for(let j = 0; j < 20; j++) {
 
-                    let cases = document.querySelector('.tireur')
+                let cases = document.querySelector('.tireur')
 
-                    if (tireur.id >= 163){
-                
-                                cases.classList.remove('tireur')
-                                cases.previousElementSibling.classList.add('tireur')
-                                tireur.id = cases.id
-                    }        
+                if (tireur.id >= 163){
+            
+                    cases.classList.remove('tireur')
+                    cases.previousElementSibling.classList.add('tireur')
+                    tireur.id = cases.id
+                }        
             }
         }
 
@@ -299,14 +306,14 @@ function movement() {
         
         document.onkeyup = function (e) {
             if (e.code == 'Space') {
+                
                 if(!shooting){
                     shooting = true;
-                    var lasers = 0;
-                    //console.log(laserShoot)
+                    laserShoot.volume = 0.3
                     laserShoot.currentTime = 0;
                     laserShoot.play();
-                    //console.log(e.code)
                     let cases = document.querySelectorAll('.case')
+                    numberOfShots ++
                     
                     setTimeout(function(){
                         shooting = false;
@@ -319,13 +326,9 @@ function movement() {
                             cases[i].classList.add('laser')
                         
                         }
-                        if (cases[i].classList.contains('laser')) {
+                        /*if (cases[i].classList.contains('laser')) {
                             lasers ++
                             console.log(lasers)
-                        }
-
-                        /*if (lasers == 2){
-                            cases[i].classList.remove('laser')
                         }*/
                     }
                 }
