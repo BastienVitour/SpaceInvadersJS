@@ -61,7 +61,7 @@ function launchGame() {
     }
 }
 
-let count = 1;
+let count = 0;
 
 var audio = document.getElementById('audio');
 var playBtn = document.getElementById('playPause');
@@ -79,3 +79,5 @@ function playPause(){
         playBtn.innerHTML = "Music OFF"
     }
 }
+
+//setTimeout(playPause, 1000)

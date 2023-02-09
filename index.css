@@ -1,4 +1,98 @@
+body {
+    background-image: url("/ressources/GIF/giphy\ \(13\).gif");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+	font-family: 'minecraft';
+	src: url('ressources/minecrafter/Minecrafter.Alt.ttf') format('truetype');
+}
+
+input[type='radio'] {
+    appearance: none;
+}
+
+button, .chosen-diff {
+    background-color: black;
+    color: white;
+    border: 2px solid white;
+    border-radius: 5px;
+    font-family: 'minecraft';
+    padding: 10px;
+    cursor: pointer;
+}
+
+#easy-choice:hover {
+    box-shadow: 0px 0px 5px 5px darkgreen;
+    transition: 0.25s;
+}
+
+#mid-choice:hover {
+    box-shadow: 0px 0px 5px 5px goldenrod;
+    transition: 0.25s;
+}
+
+#hard-choice:hover {
+    box-shadow: 0px 0px 5px 5px darkred;
+    transition: 0.35s;
+}
+
+#launch {
+    font-size: 2em;
+    padding: 30px;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+}
+
+.titre {
+    text-align: center;
+    font-family: 'minecraft', 'sans-serif';
+    color: #FFF;
+}
+.menu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2% 20%;
+}
+
+.box{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    margin: auto;
+    text-align: center;
+}
+.buttons {
+    margin-top: 2%;
+}
+
+
+#launch{
+    margin: 25px auto;
+}
+
+#difficulty{
+    display: flex;
+    justify-content: space-evenly;
+}
+
 #playPause {
     position: absolute;
     left: 90%;
+    top: 3%
+}
+
+#a-propos {
+    position: absolute;
+    left: 3%;
+    top: 3%;
 }

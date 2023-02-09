@@ -1,8 +1,14 @@
 /*#body {
     background: url(ressources/rick_background.gif);
 }*/
-body {
-    background-color: black;
+
+.container{
+    width: 80%;
+    margin: auto;
+}
+
+header{
+    margin: 7vh 10vh;
 }
 
 .grille {
@@ -32,11 +38,16 @@ body {
 	src: url('ressources/minecrafter/Minecrafter.Alt.ttf') format('truetype');
 }
 
-h1 {
+.titre {
     text-align: center;
-    margin: 20px 0;
     font-family: 'minecraft', 'sans-serif';
     color: #FFF;
+}
+.menu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2% 20%;
 }
 
 #body h1 {
@@ -97,7 +108,7 @@ h1 {
     background-size: contain;
 }
 
-button, .chosen-diff {
+button {
     background-color: black;
     color: white;
     border: 2px solid white;
@@ -107,18 +118,29 @@ button, .chosen-diff {
     cursor: pointer;
 }
 
-#main {
+.main {
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
+#launch{
+    margin: 25px auto;
+}
+
+#difficulty{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.box{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    margin: auto;
+    text-align: center;
+}
 .buttons {
-    margin-top: 25px;
-}
-
-input[type='radio'] {
-    appearance: none;
+    margin-top: 2%;
 }
 
 #play_again, #stop {
@@ -128,24 +150,4 @@ input[type='radio'] {
 h3 {
     color: white;
     font-family: 'minecraft', 'sans-serif';
-}
-
-#easy-choice:hover {
-    box-shadow: 0px 0px 5px 5px darkgreen;
-    transition: 0.25s;
-}
-
-#mid-choice:hover {
-    box-shadow: 0px 0px 5px 5px goldenrod;
-    transition: 0.25s;
-}
-
-#hard-choice:hover {
-    box-shadow: 0px 0px 5px 5px darkred;
-    transition: 0.35s;
-}
-
-#launch {
-    font-size: 2em;
-    padding: 30px;
 }

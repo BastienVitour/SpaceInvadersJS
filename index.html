@@ -4,41 +4,58 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <!--<link rel="stylesheet" href="style.css">-->
     <link rel="shortcut icon" href="ressources/alien.png" type="image/x-icon">
     <link rel="stylesheet" href="index.css">
     <title>Space Invaders</title>
 </head>
 <body>
+    <div class="container">
 
-    <h1>SpAce InvAders</h1>
-    <div id="main">
+        <header>
+            <h1 class="titre">SpACe InvAders</h1>
+        </header>
 
-        <button id="launch">LAncer une pArtie</button>
+        <nav class="menu">
+            <a href="./Propos.html"><button id="a-propos">A Propos</button></a>
+        </nav>
 
-        <div id="difficulty" class="buttons">
+        
+        <div class="main">
 
-            <input type="radio" name="diff" id="easy" value="easy">
-            <label for="easy" class="chosen-diff" id="easy-choice">FAcile</label>
+            
+            <button id="launch">LAnCer une pArtie</button>
+            
+            
+            <div id="difficulty" class="buttons">
 
-            <input type="radio" name="diff" id="mid" value="mid">
-            <label for="mid" class="chosen-diff" id="mid-choice">IntermediAire</label>
 
-            <input type="radio" name="diff" id="hard" value="hard">
-            <label for="hard" class="chosen-diff" id="hard-choice">Difficile</label>
+                <div class="box">
+                    <input type="radio" name="diff" id="easy" value="easy">
+                    <label for="easy" class="chosen-diff" id="easy-choice">FACile</label>
+                </div>
+            
+                <div class="box">
+                    <input type="radio" name="diff" id="mid" value="mid">
+                    <label for="mid" class="chosen-diff" id="mid-choice">IntermediAire</label>
+                </div>
+            
+                <div class="box">
+                    <input type="radio" name="diff" id="hard" value="hard">
+                    <label for="hard" class="chosen-diff" id="hard-choice">DiffiCile</label>
+                </div>
+        
+            </div>
 
         </div>
 
         <button id="playPause"onclick="playPause()">Music ON</button>
-        <audio id="audio" autoplay>
+        <audio id="audio" loop autoplay>
             <source src="ressources/2001.mp3" type="audio/mpeg">
         </audio>
 
 
     </div>
-    
 </body>
-
-    <script src="index.js"></script>
-
+<script src="index.js"></script>
 </html>
