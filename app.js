@@ -262,29 +262,35 @@ function movement() {
         let cases = document.querySelector('.tireur')
 
         if (e.key == 'ArrowUp') {
-            for(let j = 0; j < 20; j++) {
 
-                let cases = document.querySelector('.tireur')
+            if (tireur.id > 181) {
+                for(let j = 0; j < 20; j++) {
 
-                if (tireur.id >= 163){
-            
-                    cases.classList.remove('tireur')
-                    cases.previousElementSibling.classList.add('tireur')
-                    tireur.id = cases.id
-                }        
+                    let cases = document.querySelector('.tireur')
+
+                    if (tireur.id >= 163){
+                
+                        cases.classList.remove('tireur')
+                        cases.previousElementSibling.classList.add('tireur')
+                        tireur.id = cases.id
+                    }        
+                }
             }
         }
 
         if (e.key == 'ArrowDown') {
-            for(let j = 0; j < 20; j++) {
+            if (tireur.id < 220) {
+            
+                for(let j = 0; j < 20; j++) {
 
-                let cases = document.querySelector('.tireur')
+                    let cases = document.querySelector('.tireur')
 
-                if (tireur.id <= 238){
-                
-                    cases.classList.remove('tireur')
-                    cases.nextElementSibling.classList.add('tireur')
-                    tireur.id = cases.id
+                    if (tireur.id <= 238){
+                    
+                        cases.classList.remove('tireur')
+                        cases.nextElementSibling.classList.add('tireur')
+                        tireur.id = cases.id
+                    }
                 }
             }
         }
