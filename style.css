@@ -52,6 +52,7 @@ header{
 
 #body h1 {
     color: black;
+    font-family: 'minecraft', 'sans-serif';
 }
 
 #body h3 {
@@ -121,6 +122,17 @@ button {
 .main {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 #launch{
