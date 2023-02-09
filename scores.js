@@ -34,7 +34,7 @@ while (number < 10) {
 
     let pseudo = 'pseudo' + number.toString()
     let pseudoStr = document.querySelector('.'+pseudo)
-    pseudoStr.innerHTML = number
+    pseudoStr.innerHTML = localStorage.getItem(pseudo)
 
     let score = 'score' + number.toString()
     let scoreStr = document.querySelector('.'+score)
@@ -46,4 +46,11 @@ while (number < 10) {
 
     number++
     
+}
+
+let docu = document.getElementById('div').innerHTML
+
+for (const key in localStorage) {
+    console.log(key)
+    console.log(localStorage.getItem(key))
 }

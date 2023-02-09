@@ -61,7 +61,7 @@ function move() {
     let aliens = document.getElementsByClassName('alien')
 
     if (num < 1) {
-        alert('Vous avez gagné')
+        //alert('Vous avez gagné')
         console.log('Vous avez gagné')
         let precision = ((ennemiesDestroyed/numberOfShots)*100).toFixed(1)
         console.log("Précision : " + precision + "%")
@@ -69,21 +69,26 @@ function move() {
         let replay = document.getElementById('play_again')
         replay.style.display = 'inline'
         stopper.style.display = 'none'
-        let place = 'score'
-        let accuracy = 'precision'
+        let place = 'score0'
+        let accuracy = 'precision0'
         let number = 0
+        let pseudo = 'pseudo0'
+        let name = prompt('Indiquez votre pseudo')
         while (place in localStorage) {
             place = 'score'
             accuracy = 'precision'
+            pseudo = 'pseudo'
             place = place + number.toString()
             accuracy = accuracy + number.toString()
+            pseudo = pseudo + number.toString()
             number ++
             console.log(place)
             console.log(accuracy)
             console.log(score)
         }
         localStorage.setItem(place, JSON.stringify(score))
-        localStorage.setItem(accuracy, JSON.stringify(precision))
+        localStorage.setItem(accuracy, JSON.stringify(precision).replace('"', "").replace('"', ""))
+        localStorage.setItem(pseudo, JSON.stringify(name).replace('"', "").replace('"', ""))
     }
 
     for (let i = 0; i < casesList.length; i++) {
@@ -95,6 +100,21 @@ function move() {
             let replay = document.getElementById('play_again')
             replay.style.display = 'inline'
             stopper.style.display = 'none'
+            let place = 'score0'
+            let accuracy = 'precision0'
+            let number = 0
+            while (place in localStorage) {
+                place = 'score'
+                accuracy = 'precision'
+                place = place + number.toString()
+                accuracy = accuracy + number.toString()
+                number ++
+                console.log(place)
+                console.log(accuracy)
+                console.log(score)
+            }
+            localStorage.setItem(place, JSON.stringify(score))
+            localStorage.setItem(accuracy, JSON.stringify(precision))
             break;
         }
     }
