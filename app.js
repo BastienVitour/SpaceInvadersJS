@@ -86,6 +86,8 @@ function move() {
         localStorage.setItem(accuracy, JSON.stringify(precision))
     }
 
+    
+    
     for (let i = 0; i < casesList.length; i++) {
         if ((casesList[i].classList.contains('tireur') && casesList[i].classList.contains('alien')) || (casesList[i].classList.contains('alien') && i > 220)) {
             console.log('Vous avez perdu')
@@ -95,6 +97,12 @@ function move() {
             let replay = document.getElementById('play_again')
             replay.style.display = 'inline'
             stopper.style.display = 'none'
+            let grille = document.querySelector('.grille');
+            let lose = document.querySelector('.lose');
+            grille.style.display = 'none'
+            grille.classList.add('lose')
+            lose.style.display = 'flex'
+
             break;
         }
     }
@@ -412,6 +420,11 @@ document.onkeydown = function (f) {
             alert("tu t'es trompé")
         }
     }
+}
+
+
+function lose(){
+    cases.addEventListener()
 }
 
 setInterval(goUp, 200)

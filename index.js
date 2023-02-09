@@ -32,7 +32,7 @@ function choose(diff) {
             break;
 
         default:
-            break;
+        break;
     }
 
 }
