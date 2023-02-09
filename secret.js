@@ -72,8 +72,22 @@ function move() {
     let aliens = document.getElementsByClassName('alien')
 
     if (num < 1 && numSecret < 1) {
-        alert('Vous avez gagné')
-        console.log('Vous avez gagné')
+        let grille = document.querySelector('.grille')
+        grille.style.visibility = "hidden"
+        grille.style.display = "none"
+
+        let victory = document.querySelector('.victoire_secret')
+        victory.style.visibility = "visible"
+        victory.style.display = "flex"
+
+        var gagner = new Audio("ressources/mlg.mp3")
+
+        gagner.play()
+        audio.pause()
+        setTimeout(() => {
+            audio.play()
+        },4100);
+
         let precision = (goodShots/numberOfShots)*100
         console.log("Précision : " + precision.toFixed(1) + "%")
         clearInterval(game)
@@ -270,7 +284,7 @@ let stopper = document.getElementById('stop');
 launcher.addEventListener("click", () => {
     launcher.style.display = 'none'
     stopper.style.display = 'inline'
-    game = setInterval(move, 350)
+    game = setInterval(move, 1000)
     movement()
 });
 
@@ -381,7 +395,7 @@ function movement() {
                     
                     setTimeout(function(){
                         shooting = false;
-                    },200);
+                    },20);
         
                     for (let i = 0; i < cases.length; i++) {
                         
