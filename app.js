@@ -109,21 +109,26 @@ function move() {
         let replay = document.getElementById('play_again')
         replay.style.display = 'inline'
         stopper.style.display = 'none'
-        let place = 'score'
-        let accuracy = 'precision'
-        let number = 0
-        while (place in localStorage) {
-            place = 'score'
-            accuracy = 'precision'
-            place = place + number.toString()
-            accuracy = accuracy + number.toString()
-            number ++
-            console.log(place)
-            console.log(accuracy)
-            console.log(score)
+        let place = 'score0'
+        let accuracy = 'precision0'
+        let pseudo = 'pseudo0'
+        if ('score9' in localStorage) {
+            if (score > localStorage.getItem('score9') || (precision > localStorage.getItem('precision9') && score >= localStorage.getItem('score9'))) {
+                
+                let name = prompt('Indiquez votre pseudo')
+                saveScore(score, precision, name)
+            }
+            else {
+                alert("Vous n'êtes pas dans le top 10")
+            }
+            
         }
-        localStorage.setItem(place, JSON.stringify(score))
-        localStorage.setItem(accuracy, JSON.stringify(precision))
+        else {
+            let name = prompt('Indiquez votre pseudo')
+            saveScore(score, precision, name)
+        }
+        
+        
     }
 
     
@@ -133,12 +138,29 @@ function move() {
     
     for (let i = 0; i < casesList.length; i++) {
         if ((casesList[i].classList.contains('tireur') && casesList[i].classList.contains('alien')) || (casesList[i].classList.contains('alien') && i > 220)) {
-            let precision = (ennemiesDestroyed/numberOfShots)*100
-            console.log("Précision : " + precision.toFixed(1) + "%")
+            let precision = ((ennemiesDestroyed/numberOfShots)*100).toFixed(1)
+            console.log("Précision : " + precision + "%")
             clearInterval(game)
             let replay = document.getElementById('play_again')
             replay.style.display = 'inline'
             stopper.style.display = 'none'
+            let place = 'score0'
+            let accuracy = 'precision0'
+            let pseudo = 'pseudo0'
+            if ('score9' in localStorage) {
+                if (score > localStorage.getItem('score9') || (precision > localStorage.getItem('precision9') && score >= localStorage.getItem('score9'))) {
+                    let name = prompt('Indiquez votre pseudo')
+                    saveScore(score, precision, name)
+                }
+                else {
+                    alert("Vous n'êtes pas dans le top 10")
+                }
+                
+            }
+            else {
+                let name = prompt('Indiquez votre pseudo')
+                saveScore(score, precision, name)
+            }
             let grille = document.querySelector('.grille');
             let lose = document.querySelector('.lose');
             grille.style.display = 'none'
@@ -396,6 +418,32 @@ function movement() {
             }
         }
 
+        if (e.key == 'm') {
+            if (url.includes('easy')) {
+                score = 3600;
+                numberOfShots = 40
+                ennemiesDestroyed = 36
+            }
+            else if (url.includes('mid')) {
+                score = 7200;
+                numberOfShots = 50
+                ennemiesDestroyed = 36
+            }
+            else if (url.includes('hard')) {
+                score = 10800;
+                numberOfShots = 49
+                ennemiesDestroyed = 36
+            }
+            console.log('wbjdggfebfz')
+            setTimeout(function() {
+                let casess = document.getElementsByClassName('case')
+                for (let i = 0; i <casess.length; i++) {
+                    if (casess[i].classList.contains('alien'))
+                    casess[i].classList.remove('alien')
+                }
+            }, 12)
+        }
+
         ///////// TIR DU JOUEUR /////////
 
         document.onkeyup = function (e) {
@@ -482,6 +530,54 @@ document.onkeydown = function (f) {
             for (let f = 0; f < rightCode.length; f++){
                 code.pop()
             }
+        }
+    }
+}
+
+function saveScore (score, precision, name) {
+    for (let i = 0; i < 10; i++) {
+            
+        place = 'score'
+        accuracy = 'precision'
+        pseudo = 'pseudo'
+        place = place + i.toString()
+        accuracy = accuracy + i.toString()
+        pseudo = pseudo + i.toString()
+        console.log(place)
+        
+        if (place in localStorage) {
+            
+            if (score > localStorage.getItem(place)) {
+                
+                let ns = localStorage.getItem(place)
+                let np = localStorage.getItem(accuracy)
+                let nm = localStorage.getItem(pseudo)
+                localStorage.setItem(place, JSON.stringify(score).replace('"', '').replace('"', ''))
+                localStorage.setItem(accuracy, JSON.stringify(precision).replace('"', '').replace('"', ''))
+                localStorage.setItem(pseudo, JSON.stringify(name).replace('"', '').replace('"', ''))
+                score = ns
+                precision = np
+                name = nm
+            }
+            else if (score == localStorage.getItem(place) && precision > localStorage.getItem(accuracy)) {
+                console.log('precision > localStorage')
+                let ns = localStorage.getItem(place)
+                let np = localStorage.getItem(accuracy)
+                let nm = localStorage.getItem(pseudo)
+                localStorage.setItem(place, JSON.stringify(score).replace('"', '').replace('"', ''))
+                localStorage.setItem(accuracy, JSON.stringify(precision).replace('"', '').replace('"', ''))
+                localStorage.setItem(pseudo, JSON.stringify(name).replace('"', '').replace('"', ''))
+                score = ns
+                precision = np
+                name = nm
+            }
+        }
+        else {
+            console.log('else')
+            localStorage.setItem(place, JSON.stringify(score).replace('"', '').replace('"', ''))
+            localStorage.setItem(accuracy, JSON.stringify(precision).replace('"', '').replace('"', ''))
+            localStorage.setItem(pseudo, JSON.stringify(name).replace('"', '').replace('"', ''))
+            break
         }
     }
 }

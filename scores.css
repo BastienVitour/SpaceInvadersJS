@@ -1,6 +1,9 @@
 body {
     background-color: black;
     color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 @font-face {
@@ -8,27 +11,40 @@ body {
 	src: url('ressources/minecrafter/Minecrafter.Alt.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'apache';
+    src: url('ressources/apache.ttf');
+}
+
+@font-face {
+    font-family: 'atari';
+    src: url('ressources/atari.ttf');
+}
+
 h1 {
     text-align: center;
     margin: 20px 0;
-    font-family: 'minecraft', 'sans-serif';
+    font-family: 'atari', 'sans-serif';
     color: #FFF;
 }
 
 .scores {
-    border : 2px solid white;
+    /*border : 2px solid white;*/
     height: 560px;
-}
-
-.score {
-    border: 3px solid red;
-    height: 50px
 }
 
 table {
     border-collapse: collapse;
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
 }
 
 td, th {
-    border: 1px solid white
+    /*border: 1px solid white;*/
+    font-family: 'atari'
+}
+
+th {
+    font-family: 'atari', 'sans-serif';
 }
