@@ -2,6 +2,7 @@ let fond = document.getElementById('body');
 fond.style.background = 'url(ressources/rick_background.gif)'
 
 let grille = document.querySelector('.grille');
+let shooting = false;
 
 for (let i=1; i<241; i++) {
     let cases = document.createElement('div');
@@ -13,15 +14,14 @@ for (let i=1; i<241; i++) {
     }
     if (i < 61 && i%20 < 13 && i%20 != 0) {
         cases.classList.add('alien')
-        //cases.classList.add('secret_alien')
     }
+
     if (i == 230) {
         cases.classList.add('secret_tireur')
     }
     cases.classList.add('case')
     cases.setAttribute('id', i)
     grille.append(cases)
-
 }
 
 function goLeft() {
@@ -63,7 +63,7 @@ function goRight() {
 }
 
 let direction= 'right';
-var lost = false;
+var down = true;
 
 function move() {
     let numSecret = document.getElementsByClassName('secret_alien').length
@@ -74,7 +74,41 @@ function move() {
     if (num < 1 && numSecret < 1) {
         alert('Vous avez gagné')
         console.log('Vous avez gagné')
+        let precision = (goodShots/numberOfShots)*100
+        console.log("Précision : " + precision.toFixed(1) + "%")
         clearInterval(game)
+        let replay = document.getElementById('play_again')
+        replay.style.display = 'inline'
+        stopper.style.display = 'none'
+    }
+
+    for (let i = 0; i < casesList.length; i++) {
+        //if (casesList[i].classList.contains('secret_tireur')) {
+        //    console.log(casesList[i].classList)
+        //}
+        if ((casesList[i].classList.contains('secret_tireur') && casesList[i].classList.contains('secret_alien')) || (casesList[i].classList.contains('secret_alien') && i > 220)) {
+            console.log('Vous avez perdu')
+            let precision = (goodShots/numberOfShots)*100
+            console.log("Précision : " + precision.toFixed(1) + "%")
+            clearInterval(game)
+            let replay = document.getElementById('play_again')
+            replay.style.display = 'inline'
+            stopper.style.display = 'none'
+            break;
+        }
+        //if (casesList[i].classList.contains('secret_tireur')) {
+        //    console.log(casesList[i].classList)
+        //}
+        if ((casesList[i].classList.contains('secret_tireur') && casesList[i].classList.contains('alien')) || (casesList[i].classList.contains('alien') && i > 220)) {
+            console.log('Vous avez perdu')
+            let precision = (goodShots/numberOfShots)*100
+            console.log("Précision : " + precision.toFixed(1) + "%")
+            clearInterval(game)
+            let replay = document.getElementById('play_again')
+            replay.style.display = 'inline'
+            stopper.style.display = 'none'
+            break;
+        }
     }
 
     let cases = document.querySelectorAll('.case')
@@ -82,22 +116,37 @@ function move() {
 
     for (let k = num-1; k >= 0; k--) {
 
-        console.log(alienSecret[k])
+        //console.log(alienSecret[k])
 
         if (aliens[k].classList.contains('right-stop')) {
             
-            for(let j = 0; j < 20; j++) {
-                goRight()
-            }            
+            if (down) {
+                for(let j = 0; j <= 20; j++) {
+                    goRight()
+                }
+                down = false
+            }
+
+            setTimeout(() => {
+                down = true;
+            }, 350);
+                      
             direction = 'left';
             break;  
             
         }
         if (aliens[k].classList.contains('left-stop') && !cases[0].classList.contains('alien')) {
 
-            for(let j = 0; j < 20; j++) {
-                goRight()
+            if (down) {
+                for(let j = 0; j < 19; j++) {
+                    goRight()
+                }
+                down = false
             }
+
+            setTimeout(() => {
+                down = true;
+            }, 350);
 
         direction = 'right';
         break;
@@ -109,18 +158,33 @@ function move() {
 
         if (alienSecret[k].classList.contains('right-stop')) {
             
-            for(let j = 0; j < 20; j++) {
-                goRight()
-            }            
+            if (down) {
+                for(let j = 0; j <= 20; j++) {
+                    goRight()
+                }
+                down = false;
+            }
+
+            setTimeout(() => {
+                down = true;
+            }, 350);
+
             direction = 'left';
             break;  
             
         }
         if (alienSecret[k].classList.contains('left-stop') && !cases[0].classList.contains('secret_alien')) {
 
-            for(let j = 0; j < 20; j++) {
-                goRight()
+            if (down) {
+                for(let j = 0; j < 19; j++) {
+                    goRight()
+                }
+                down = false;
             }
+
+            setTimeout(() => {
+                down = true;
+            }, 350);
 
         direction = 'right';
         break;
@@ -140,29 +204,34 @@ function move() {
 
     }
 
-    for (let i = 0; i < casesList.length; i++) {
-        if (casesList[i].classList.contains('secret_tireur')) {
-            console.log(casesList[i].classList)
-        }
-        if ((casesList[i].classList.contains('secret_tireur') && casesList[i].classList.contains('secret_alien')) || (casesList[i].classList.contains('secret_alien') && i > 220)) {
-            console.log('Vous avez perdu')
-            clearInterval(game)
-            lost = true;
-            alert('vous avez perdu')
-            break;
-        }
-        if (casesList[i].classList.contains('secret_tireur')) {
-            console.log(casesList[i].classList)
-        }
-        if ((casesList[i].classList.contains('secret_tireur') && casesList[i].classList.contains('alien')) || (casesList[i].classList.contains('alien') && i > 220)) {
-            console.log('Vous avez perdu')
-            clearInterval(game)
-            lost = true;
-            alert('vous avez perdu')
-            break;
+}
+
+var explosion = new Audio("ressources/explosion.mp3")
+var score = 0
+
+/*function goUp() {
+    let cases = document.querySelectorAll('.case')
+
+    if (e.code == 'Space') {
+        if(!shooting){
+            shooting = true;
+            setTimeout(function(){
+                shooting = false;
+            },1000);
+    
+
+            for (let i = 0; i < cases.length; i++) {
+                if (cases[i].classList.contains('tireur')) {
+                    cases[i].classList.add('laser')
+                }
+            }
         }
     }
-}
+    setInterval(goUp, 500);
+};*/
+
+let ennemiesDestroyed = 0
+let goodShots = 0
 
 function goUp() {
     let cases = document.querySelectorAll('.case')
@@ -181,21 +250,33 @@ function goUp() {
     
     for (let k = 0; k < cases.length; k++) {
         if (cases[k].classList.contains('secret_alien') && cases[k].classList.contains('secret_laser')) {
+            explosion.currentTime = 0
             cases[k].classList.add('boom')
+            explosion.play()
             cases[k].classList.remove('secret_laser')
+            cases[k].classList.remove('secret_alien')
             setTimeout(function(){
-                cases[k].classList.remove('secret_alien')
                 cases[k].classList.remove('boom')
+                score += 500
+                document.getElementById('score').innerText = "Score : " + score
+                goodShots++;
+                ennemiesDestroyed ++;
+                console.log("Shots fired : " + numberOfShots)
+                console.log("Coups au but : " + goodShots)
+                console.log("Ennemies destroyed : " + ennemiesDestroyed)
             }, 100);
 
         }
         if (cases[k].classList.contains('alien') && cases[k].classList.contains('secret_laser')) {
+            explosion.currentTime = 0
             cases[k].classList.add('boom')
+            explosion.play()
             cases[k].classList.remove('secret_laser')
             setTimeout(function(){
                 cases[k].classList.remove('alien')
                 cases[k].classList.remove('boom')
                 cases[k].classList.add('secret_alien')
+                goodShots++
             }, 100);
 
         }
@@ -205,16 +286,20 @@ function goUp() {
 var game;
 
 let launcher = document.getElementById('button');
+let stopper = document.getElementById('stop');
 
 launcher.addEventListener("click", () => {
     launcher.style.display = 'none'
-    game = setInterval(move, 250)
+    stopper.style.display = 'inline'
+    game = setInterval(move, 350)
     movement()
 });
 
-let stopper = document.getElementById('stop');
-
 stopper.addEventListener("click", () => {
+    stopper.style.display = 'none'
+    launcher.style.display = 'inline'
+    launcher.innerText = 'Reprendre'
+    pause()
     clearInterval(game)
 });
 
@@ -227,6 +312,8 @@ replay.addEventListener("click", () => {
 let casesList = document.querySelectorAll('.case')
 
 // PLAYER MOVEMENT
+var laserShoot = new Audio("ressources/laser.mp3");
+var numberOfShots = 0
 
 function movement() {
     let tireur = document.querySelector('.secret_tireur');
@@ -235,29 +322,36 @@ function movement() {
         let cases = document.querySelector('.secret_tireur')
 
         if (e.key == 'ArrowUp') {
+
+            if (tireur.id > 181) {
                 for(let j = 0; j < 20; j++) {
 
                     let cases = document.querySelector('.secret_tireur')
 
                     if (tireur.id >= 163){
                 
-                                cases.classList.remove('secret_tireur')
-                                cases.previousElementSibling.classList.add('secret_tireur')
-                                tireur.id = cases.id
+                        cases.classList.remove('secret_tireur')
+                        cases.previousElementSibling.classList.add('secret_tireur')
+                        tireur.id = cases.id
                     }        
+                }
             }
         }
 
         if (e.key == 'ArrowDown') {
-            for(let j = 0; j < 20; j++) {
 
-                let cases = document.querySelector('.secret_tireur')
+            if (tireur.id < 220) {
 
-                if (tireur.id <= 238){
-                
-                    cases.classList.remove('secret_tireur')
-                    cases.nextElementSibling.classList.add('secret_tireur')
-                    tireur.id = cases.id
+                for(let j = 0; j < 20; j++) {
+
+                    let cases = document.querySelector('.secret_tireur')
+
+                    if (tireur.id <= 238){
+                    
+                        cases.classList.remove('secret_tireur')
+                        cases.nextElementSibling.classList.add('secret_tireur')
+                        tireur.id = cases.id
+                    }
                 }
             }
         }
@@ -276,7 +370,34 @@ function movement() {
             }
         }
 
-        if (e.code == 'Space') {
+        document.onkeyup = function (e) {
+            if (e.code == 'Space') {
+                
+                if(!shooting){
+                    shooting = true;
+                    laserShoot.volume = 0.3
+                    laserShoot.currentTime = 0;
+                    laserShoot.play();
+                    let cases = document.querySelectorAll('.case')
+                    numberOfShots ++
+                    
+                    setTimeout(function(){
+                        shooting = false;
+                    },200);
+        
+                    for (let i = 0; i < cases.length; i++) {
+                        
+                        if (cases[i].classList.contains('secret_tireur')) {
+                            
+                            cases[i].classList.add('secret_laser')
+                        
+                        }
+                    }
+                }
+            }
+        }
+
+        /*if (e.code == 'Space') {
             console.log(e.code)
             let cases = document.querySelectorAll('.case')
 
@@ -286,6 +407,17 @@ function movement() {
                 }
             }
             setInterval(goUp, 600)
-        }
+        }*/
     };
 }
+
+function pause() {
+    document.onkeydown = function (e) {
+        e.preventDefault()
+    }
+    document.onkeyup = function (e) {
+        e.preventDefault()
+    }
+}
+
+setInterval(goUp, 200)

@@ -1,6 +1,7 @@
-#body {
+/*#body {
     background: url(ressources/rick_background.gif);
-}body {
+}*/
+body {
     background-color: black;
 }
 
@@ -37,6 +38,15 @@ h1 {
     font-family: 'minecraft', 'sans-serif';
     color: #FFF;
 }
+
+#body h1 {
+    color: black;
+}
+
+#body h3 {
+    color: black;
+}
+
 .grille div {
     width: 25px;
     height: 25px;

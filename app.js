@@ -1,10 +1,4 @@
 var url = window.location.href;
-var isSecret = url.includes('secret');
-
-if (isSecret){
-    let fond = document.getElementById('body');
-    fond.style.background = 'url(ressources/rick_background.gif)'
-}
 
 let grille = document.querySelector('.grille');
 let shooting = false;
@@ -20,19 +14,10 @@ for (let i=1; i<241; i++) {
     }
     if (i < 61 && i%20 < 13 && i%20 != 0) {
         cases.classList.add('alien')
-        if(isSecret) {
-            cases.classList.add('secret_alien')
-        }
     }
     
     if (i == 230) {
-        if(isSecret) {
-            cases.classList.add('secret_tireur')
-        }
-        else {
-            cases.classList.add('tireur')
-        }
-       
+        cases.classList.add('tireur')
     }
     cases.classList.add('case')
     cases.setAttribute('id', i)
@@ -45,12 +30,6 @@ function goLeft() {
         let cases = document.querySelectorAll('.case')[i]
 
         if (cases.previousSibling) {
-            if(isSecret) {
-                if (cases.classList.contains('secret_alien') && !cases.previousElementSibling.classList.contains('secret_alien')) {
-                    cases.classList.remove('secret_alien')
-                    cases.previousElementSibling.classList.add('secret_alien')
-                }
-            }
             if (cases.classList.contains('alien') && !cases.previousElementSibling.classList.contains('alien')) {
                 cases.classList.remove('alien')
                 cases.previousElementSibling.classList.add('alien')
@@ -66,12 +45,6 @@ function goRight() {
         let cases = document.querySelectorAll('.case')[i]
 
         if (cases.nextSibling) {
-            if(isSecret) {
-                if (cases.classList.contains('secret_alien') && !cases.nextElementSibling.classList.contains('secret_alien')) {
-                    cases.classList.remove('secret_alien')
-                    cases.nextElementSibling.classList.add('secret_alien')
-                }
-            }
             if (cases.classList.contains('alien') && !cases.nextElementSibling.classList.contains('alien')) {
                 cases.classList.remove('alien')
                 cases.nextElementSibling.classList.add('alien')
@@ -133,18 +106,7 @@ function move() {
             break;  
             
         }
-        if(isSecret) {
-            if (aliens[k].classList.contains('left-stop') && !cases[0].classList.contains('secret_alien')) {
 
-                for(let j = 0; j < 20; j++) {
-                    goRight()
-                }
-    
-            direction = 'right';
-            break;
-    
-            }
-        }
         else if (aliens[k].classList.contains('left-stop') && !cases[0].classList.contains('alien')) {
 
             if (down) {
@@ -181,7 +143,7 @@ function move() {
 var explosion = new Audio("ressources/explosion.mp3")
 var score = 0
 
-function goUp() {
+/*function goUp() {
     let cases = document.querySelectorAll('.case')
 
     if (e.code == 'Space') {
@@ -200,7 +162,7 @@ function goUp() {
         }
     }
     setInterval(goUp, 500);
-};
+};*/
 
 let ennemiesDestroyed = 0;
 
@@ -216,15 +178,6 @@ function goUp() {
                     cases[k].previousElementSibling.classList.add('laser')
                 }
                 
-            }
-            if(isSecret) { 
-                if (cases[k].classList.contains('secret_laser')) {
-                    cases[k].classList.remove('secret_laser')
-                    if (cases[k].previousElementSibling) {
-                        cases[k].previousElementSibling.classList.add('secret_laser')
-                    }
-                    
-                }
             }
         }
     }
@@ -272,9 +225,6 @@ else if (url.includes('mid')) {
 else if (url.includes('hard')) {
     speed = 250;
 }
-else if (isSecret) {
-    speed = 250;
-}
 
 let launcher = document.getElementById('button');
 let stopper = document.getElementById('stop');
@@ -283,12 +233,7 @@ launcher.addEventListener("click", () => {
     launcher.style.display = 'none'
     stopper.style.display = 'inline'
     game = setInterval(move, speed)
-    if (isSecret){
-        secretMovement()
-    }
-    else {
-        movement()
-    }
+    movement()
 });
 
 stopper.addEventListener("click", () => {
@@ -389,10 +334,6 @@ function movement() {
                             cases[i].classList.add('laser')
                         
                         }
-                        /*if (cases[i].classList.contains('laser')) {
-                            lasers ++
-                            console.log(lasers)
-                        }*/
                     }
                 }
             }
