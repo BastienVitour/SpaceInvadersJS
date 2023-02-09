@@ -80,6 +80,7 @@ header{
     background-size: cover;
     background-repeat: no-repeat;
 }
+
 .lose {
     display: none;
     flex-wrap: wrap;

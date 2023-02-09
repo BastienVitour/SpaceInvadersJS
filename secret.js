@@ -284,7 +284,7 @@ let stopper = document.getElementById('stop');
 launcher.addEventListener("click", () => {
     launcher.style.display = 'none'
     stopper.style.display = 'inline'
-    game = setInterval(move, 1000)
+    game = setInterval(move, 600)
     movement()
 });
 
@@ -395,7 +395,7 @@ function movement() {
                     
                     setTimeout(function(){
                         shooting = false;
-                    },20);
+                    },200);
         
                     for (let i = 0; i < cases.length; i++) {
                         
