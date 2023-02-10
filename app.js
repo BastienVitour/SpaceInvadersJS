@@ -120,7 +120,11 @@ function move() {
             }
             else {
                 setTimeout(function () {
-                    alert("Vous n'êtes pas dans le top 10")
+                    let lost = document.querySelector('.loser')
+                    lost.style.visibility = "visible"
+                    lost.style.display = "flex"
+                    victory.style.visibility = "hidden"
+                    victory.style.display = "none"
                 }, 5000)
                
             }
@@ -205,6 +209,8 @@ function move() {
     for (let i = 0; i < casesList.length; i++) {
         if ((casesList[i].classList.contains('tireur') && casesList[i].classList.contains('alien')) || (casesList[i].classList.contains('alien') && i > 220)) {
 
+            let precision = ((ennemiesDestroyed/numberOfShots)*100).toFixed(1)
+
             let grille = document.querySelector('.grille');
             let lose = document.querySelector('.lose');
             grille.style.display = 'none';
@@ -234,7 +240,11 @@ function move() {
                 }
                 else {
                     setTimeout(function () {
-                        alert("Vous n'êtes pas dans le top 10")
+                        let lost = document.querySelector('.loser')
+                        lost.style.visibility = "visible"
+                        lost.style.display = "flex"
+                        lose.style.visibility = "hidden"
+                        lose.style.display = "none"
                     }, 5000)
                    
                 }
@@ -251,28 +261,6 @@ function move() {
                 },5000);
             }
 
-            if ('score9' in localStorage) {
-                if (score > localStorage.getItem('score9') || (precision > localStorage.getItem('precision9') && score >= localStorage.getItem('score9'))) {
-            
-                    setTimeout(() => {
-                        //audio.play()
-                        //gagner.pause()
-                        let inputPseudo = document.querySelector('.pseudo')
-                        inputPseudo.style.visibility = "visible"
-                        inputPseudo.style.display = "flex"
-                        lose.style.visibility = "hidden"
-                        lose.style.display = "none"
-                    },5000);
-                }
-                else {
-                    setTimeout(function () {
-                        alert("Vous n'êtes pas dans le top 10")
-                    }, 5000)
-                   
-                }
-            }
-
-            let precision = ((ennemiesDestroyed/numberOfShots)*100).toFixed(1)
             console.log("Précision : " + precision + "%")
             clearInterval(game)
             let replay = document.getElementById('play_again')
@@ -290,9 +278,6 @@ function move() {
                         saveScore(place, accuracy, pseudo, score, precision, name)
                         document.location.reload(false)
                     })
-                }
-                else {
-                    alert("Vous n'êtes pas dans le top 10")
                 }
                 
             }

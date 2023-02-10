@@ -171,7 +171,7 @@ function move() {
         if (aliens[k].classList.contains('right-stop')) {
             
             if (down) {
-                for(let j = 0; j <= 20; j++) {
+                for(let j = 0; j < 20; j++) {
                     goRight()
                 }
                 down = false
@@ -188,7 +188,7 @@ function move() {
         if (aliens[k].classList.contains('left-stop') && !cases[0].classList.contains('alien')) {
 
             if (down) {
-                for(let j = 0; j < 19; j++) {
+                for(let j = 0; j < 20; j++) {
                     goRight()
                 }
                 down = false
@@ -213,7 +213,7 @@ function move() {
         if (alienSecret[k].classList.contains('right-stop')) {
             
             if (down) {
-                for(let j = 0; j <= 20; j++) {
+                for(let j = 0; j < 20; j++) {
                     goRight()
                 }
                 down = false;
@@ -230,7 +230,7 @@ function move() {
         if (alienSecret[k].classList.contains('left-stop') && !cases[0].classList.contains('secret_alien')) {
 
             if (down) {
-                for(let j = 0; j < 19; j++) {
+                for(let j = 0; j < 20; j++) {
                     goRight()
                 }
                 down = false;
