@@ -306,6 +306,11 @@ function move() {
                     document.location.reload(false)
                 })
             }
+            
+            var perdu = new Audio("ressources/MarioDeath.mp3")
+
+            perdu.play();
+            audio.pause();
 
             break;
         }
