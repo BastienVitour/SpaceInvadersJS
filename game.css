@@ -112,6 +112,25 @@ header{
     background-size: contain;
 }
 
+.loser {
+    display: none;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+
+    align-items: center;
+    border: 1px solid #ffffff;
+    width: 500px;
+    height: 400px;
+    margin: 0 auto;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    background-image: url("ressources/background-black.png");
+    background-position: center;
+    background-size: contain;
+    font-family: 'minecraft';
+    font-size: 3em;
+}
+
 @font-face {
 	font-family: 'atari';
 	src: url('ressources/atari.ttf') format('truetype');
