@@ -248,7 +248,7 @@ function move() {
                 })
             }
             
-            var perdu = new Audio("ressources/Wasted.mp3")
+            var perdu = new Audio("ressources/Mario Death.mp3")
 
             perdu.play();
             audio.pause();
