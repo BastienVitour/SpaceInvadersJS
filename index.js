@@ -2,6 +2,10 @@ let easyBtn = document.getElementById('easy-choice')
 let midBtn = document.getElementById('mid-choice')
 let hardBtn = document.getElementById('hard-choice')
 
+
+///////// CHOIX DE LA DIFFICULTÉ PAR LE JOUEUR /////////
+
+
 easyBtn.addEventListener('click', () => {
     choose('easy');
 });
@@ -41,6 +45,8 @@ let launch = document.getElementById('launch')
 
 launch.addEventListener('click', launchGame)
 
+///////// LANCEMENT DE LA PARTIE AVEC LA DIFFICULTÉ CHOISIE PAR LE JOUEUR /////////
+
 function launchGame() {
     var diff = document.querySelector('input[name="diff"]:checked');
     if (diff == null) {
@@ -65,6 +71,8 @@ let count = 0;
 
 var audio = document.getElementById('audio');
 var playBtn = document.getElementById('playPause');
+
+///////// FONCTION POUR COUPER/JOUER LA MUSIQUE /////////
 
 function playPause(){
     console.log(count)
