@@ -267,7 +267,7 @@ function move() {
 ///////// SON D'EXPLOSION DES MISSILES /////////
 
 
-var explosion = new Audio("ressources/explosion.mp3")
+var explosion = new Audio("ressources/break.mp3")
 var score = 0
 
 let ennemiesDestroyed = 0
@@ -302,6 +302,7 @@ function goUp() {
     
     for (let k = 0; k < cases.length; k++) {
         if (cases[k].classList.contains('secret_alien') && cases[k].classList.contains('secret_laser')) {
+            explosion.volume = 1;
             explosion.currentTime = 0
             cases[k].classList.add('boom')
             explosion.play()
@@ -320,6 +321,7 @@ function goUp() {
 
         }
         if (cases[k].classList.contains('alien') && cases[k].classList.contains('secret_laser')) {
+            explosion.volume = 1;
             explosion.currentTime = 0
             cases[k].classList.add('boom')
             explosion.play()
@@ -400,7 +402,7 @@ let casesList = document.querySelectorAll('.case')
 ///////// MOUVEMENT DU JOUEUR /////////
 
 
-var laserShoot = new Audio("ressources/laser.mp3");
+var laserShoot = new Audio("ressources/Hit.mp3");
 var numberOfShots = 0
 
 function movement() {
@@ -467,7 +469,7 @@ function movement() {
                 
                 if(!shooting){
                     shooting = true;
-                    laserShoot.volume = 0.3
+                    laserShoot.volume = 1
                     laserShoot.currentTime = 0;
                     laserShoot.play();
                     let cases = document.querySelectorAll('.case')
