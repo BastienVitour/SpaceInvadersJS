@@ -226,8 +226,10 @@ function move() {
 
 
             if ('score9' in localStorage) {
-                if (score > localStorage.getItem('score9') || (precision > localStorage.getItem('precision9') && score >= localStorage.getItem('score9'))) {
+                if ((score > localStorage.getItem('score9') || (precision > localStorage.getItem('precision9') && score >= localStorage.getItem('score9'))) && score > 0) {
             
+                    console.log(score)
+                    console.log('on est la')
                     setTimeout(() => {
                         //audio.play()
                         //gagner.pause()
@@ -239,6 +241,7 @@ function move() {
                     },5000);
                 }
                 else {
+                    console.log('score 0')
                     setTimeout(function () {
                         let lost = document.querySelector('.loser')
                         lost.style.visibility = "visible"
@@ -250,15 +253,28 @@ function move() {
                 }
             }
             else {
-                setTimeout(() => {
-                    //audio.play()
-                    //gagner.pause()
-                    let inputPseudo = document.querySelector('.pseudo')
-                    inputPseudo.style.visibility = "visible"
-                    inputPseudo.style.display = "flex"
-                    lose.style.visibility = "hidden"
-                    lose.style.display = "none"
-                },5000);
+                if (score > 0) {
+                    setTimeout(() => {
+                        //audio.play()
+                        //gagner.pause()
+                        let inputPseudo = document.querySelector('.pseudo')
+                        inputPseudo.style.visibility = "visible"
+                        inputPseudo.style.display = "flex"
+                        lose.style.visibility = "hidden"
+                        lose.style.display = "none"
+                    },5000);
+                }
+                else {
+                    console.log('score 0')
+                    setTimeout(function () {
+                        let lost = document.querySelector('.loser')
+                        lost.style.visibility = "visible"
+                        lost.style.display = "flex"
+                        lose.style.visibility = "hidden"
+                        lose.style.display = "none"
+                    }, 5000)
+                }
+                
             }
 
             console.log("Précision : " + precision + "%")
@@ -270,7 +286,7 @@ function move() {
             let accuracy = 'precision0'
             let pseudo = 'pseudo0'
             if ('score9' in localStorage) {
-                if (score > localStorage.getItem('score9') || (precision > localStorage.getItem('precision9') && score >= localStorage.getItem('score9'))) {
+                if ((score > localStorage.getItem('score9') || (precision > localStorage.getItem('precision9') && score >= localStorage.getItem('score9'))) && score > 0) {
                     let sendBtn = document.getElementById('send')
                     let playerInput = document.getElementById('playerName')
                     sendBtn.addEventListener('click', function() {

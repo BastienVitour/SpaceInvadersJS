@@ -4,6 +4,9 @@ fond.style.background = 'url(ressources/rick_background.gif)'
 let grille = document.querySelector('.grille');
 let shooting = false;
 
+let rick = document.getElementById('audio')
+rick.volume = 0.3
+
 
 ///////// CRÉATION DE LA GRILLE ET DES ÉLÉMENTS QUI LA COMPOSE /////////
 
