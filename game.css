@@ -233,9 +233,9 @@ button, .chosen-diff {
     text-align: center;
 }
 
-#launch{
+/*#launch{
     margin: 25px auto;
-}
+}*/
 
 #difficulty{
     display: flex;
@@ -249,9 +249,9 @@ button, .chosen-diff {
     margin: auto;
     text-align: center;
 }
-/*.buttons {
+.buttons {
     margin-top: 2%;
-}*/
+}
 
 #play_again, #stop {
     display: none;
