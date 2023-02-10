@@ -80,8 +80,6 @@ for (let i = 0; i < 10; i++) {
     
 }*/
 
-let docu = document.getElementById('div').innerHTML
-
 for (const key in localStorage) {
     console.log(key)
     console.log(localStorage.getItem(key))

@@ -88,6 +88,8 @@ function move() {
 
         gagner.play()
         audio.pause()
+
+        //pause()
         /*let inputPseudo = document.querySelector('.pseudo')
         inputPseudo.style.visibility = "visible"
         inputPseudo.style.display = "flex"
@@ -113,15 +115,18 @@ function move() {
                
             }
         }
-        /*setTimeout(() => {
-            //audio.play()
-            //gagner.pause()
-            let inputPseudo = document.querySelector('.pseudo')
-            inputPseudo.style.visibility = "visible"
-            inputPseudo.style.display = "flex"
-            victory.style.visibility = "hidden"
-            victory.style.display = "none"
-        },5000);*/
+        else {
+            setTimeout(() => {
+                //audio.play()
+                //gagner.pause()
+                let inputPseudo = document.querySelector('.pseudo')
+                inputPseudo.style.visibility = "visible"
+                inputPseudo.style.display = "flex"
+                victory.style.visibility = "hidden"
+                victory.style.display = "none"
+            },5000);
+        }
+        /**/
         
 
         ///////// MORCEAU DE CODE POUR NIVEAU SECRET /////////
@@ -189,9 +194,49 @@ function move() {
 
             let grille = document.querySelector('.grille');
             let lose = document.querySelector('.lose');
-            grille.style.display = 'none'
-            grille.classList.add('lose')
-            lose.style.display = 'flex'
+            grille.style.display = 'none';
+            grille.classList.add('lose');
+            lose.style.display = 'flex';
+
+            var perdu = new Audio("ressources/MarioDeath.mp3")
+
+            console.log('YOU LOSE')
+
+            perdu.play()
+            audio.pause()
+
+
+            if ('score9' in localStorage) {
+                if (score > localStorage.getItem('score9') || (precision > localStorage.getItem('precision9') && score >= localStorage.getItem('score9'))) {
+            
+                    setTimeout(() => {
+                        //audio.play()
+                        //gagner.pause()
+                        let inputPseudo = document.querySelector('.pseudo')
+                        inputPseudo.style.visibility = "visible"
+                        inputPseudo.style.display = "flex"
+                        lose.style.visibility = "hidden"
+                        lose.style.display = "none"
+                    },5000);
+                }
+                else {
+                    setTimeout(function () {
+                        alert("Vous n'êtes pas dans le top 10")
+                    }, 5000)
+                   
+                }
+            }
+            else {
+                setTimeout(() => {
+                    //audio.play()
+                    //gagner.pause()
+                    let inputPseudo = document.querySelector('.pseudo')
+                    inputPseudo.style.visibility = "visible"
+                    inputPseudo.style.display = "flex"
+                    lose.style.visibility = "hidden"
+                    lose.style.display = "none"
+                },5000);
+            }
 
             if ('score9' in localStorage) {
                 if (score > localStorage.getItem('score9') || (precision > localStorage.getItem('precision9') && score >= localStorage.getItem('score9'))) {
@@ -247,11 +292,6 @@ function move() {
                     document.location.reload(false)
                 })
             }
-            
-            var perdu = new Audio("ressources/Mario Death.mp3")
-
-            perdu.play();
-            audio.pause();
 
             break;
         }
