@@ -4,6 +4,10 @@ fond.style.background = 'url(ressources/rick_background.gif)'
 let grille = document.querySelector('.grille');
 let shooting = false;
 
+
+///////// CRÉATION DE LA GRILLE ET DES ÉLÉMENTS QUI LA COMPOSE /////////
+
+
 for (let i=1; i<241; i++) {
     let cases = document.createElement('div');
     if (i%20 == 0) {
@@ -24,6 +28,10 @@ for (let i=1; i<241; i++) {
     grille.append(cases)
 }
 
+
+///////// DÉPLACER LES ALIENS À GAUCHE /////////
+
+
 function goLeft() {
     for (let i = 0; i < 239; i ++) {
 
@@ -42,6 +50,10 @@ function goLeft() {
         
     }
 }
+
+
+///////// DÉPLACER LES ALIENS VERS LA DROITE /////////
+
 
 function goRight() {
     for (let i = 239; i >= 0; i --) {
@@ -65,11 +77,19 @@ function goRight() {
 let direction= 'right';
 var down = true;
 
+
+///////// LANCER LA PARTIE /////////
+
+
 function move() {
     let numSecret = document.getElementsByClassName('secret_alien').length
     let alienSecret = document.getElementsByClassName('secret_alien')
     let num = document.getElementsByClassName('alien').length
     let aliens = document.getElementsByClassName('alien')
+
+
+    ///////// VÉRIFIFCATION DE LA VICTOIRE /////////
+
 
     if (num < 1 && numSecret < 1) {
         let grille = document.querySelector('.grille')
@@ -95,6 +115,11 @@ function move() {
         replay.style.display = 'inline'
         stopper.style.display = 'none'
     }
+
+
+    ///////// VÉRIFICATION DE LA DÉFAITE /////////
+
+
 
     for (let i = 0; i < casesList.length; i++) {
         //if (casesList[i].classList.contains('secret_tireur')) {
@@ -134,6 +159,9 @@ function move() {
     }
 
     let cases = document.querySelectorAll('.case')
+
+
+    ///////// DÉPLACEMENT DES ALIENS VERS LE BAS /////////
 
 
     for (let k = num-1; k >= 0; k--) {
@@ -176,6 +204,10 @@ function move() {
         }
     }
 
+
+    ///////// DÉPLACEMENT DES ALIENS SECRET VERS LE BAS /////////
+
+
     for (let k = numSecret-1; k >= 0; k--) {
 
         if (alienSecret[k].classList.contains('right-stop')) {
@@ -214,6 +246,10 @@ function move() {
         }
     }
 
+
+    ///////// DÉPLACEMENT DES ALIENS EN FONCTION DE LEUR DIRECTION /////////
+
+
     if (direction == 'right') {
 
         goRight();
@@ -225,8 +261,11 @@ function move() {
         goLeft();
 
     }
-
 }
+
+
+///////// SON D'EXPLOSION DES MISSILES /////////
+
 
 var explosion = new Audio("ressources/explosion.mp3")
 var score = 0
@@ -234,8 +273,16 @@ var score = 0
 let ennemiesDestroyed = 0
 let goodShots = 0
 
+
+///////// DÉPLACEMENT DU MISSILE /////////
+
+
 function goUp() {
     let cases = document.querySelectorAll('.case')
+
+
+    ///////// DÉPLACEMENT DU MISSILE VERS LE HAUT /////////
+
 
     for(let j = 0; j < 20; j++) {
         for (let k = 0; k < cases.length; k++) {
@@ -248,6 +295,10 @@ function goUp() {
             }
         }
     }
+
+
+    ///////// DÉSTRUCTION DE L'ALIEN LORSQU'UN MISSILE LE TOUCHE /////////
+
     
     for (let k = 0; k < cases.length; k++) {
         if (cases[k].classList.contains('secret_alien') && cases[k].classList.contains('secret_laser')) {
@@ -290,6 +341,10 @@ let launcher = document.getElementById('button');
 let stopper = document.getElementById('stop');
 let returner = document.getElementById('return')
 
+
+///////// ÉVÈNEMENTS DES DIFFÉRENTS BOUTONS /////////
+
+
 returner.addEventListener("click", () => {
     window.location.href = 'index.html'
 });
@@ -321,6 +376,10 @@ var playBtn = document.getElementById('playPause');
 
 let count = 1;
 
+
+///////// COUPER OU REMETTRE LE SON /////////
+
+
 function playPause(){
     console.log(count)
     if(count == 0){
@@ -337,7 +396,10 @@ function playPause(){
 
 let casesList = document.querySelectorAll('.case')
 
-// PLAYER MOVEMENT
+
+///////// MOUVEMENT DU JOUEUR /////////
+
+
 var laserShoot = new Audio("ressources/laser.mp3");
 var numberOfShots = 0
 
@@ -396,6 +458,10 @@ function movement() {
             }
         }
 
+
+        ///////// TIR DU JOUEUR /////////
+
+
         document.onkeyup = function (e) {
             if (e.code == 'Space') {
                 
@@ -424,6 +490,10 @@ function movement() {
         }
     }
 }
+
+
+///////// METTRE EN PAUSE LE JEU /////////
+
 
 function pause() {
     document.onkeydown = function (e) {

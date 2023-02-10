@@ -333,6 +333,10 @@ function move() {
     
 }
 
+
+///////// SONN D'EXPLOSION DES MISSILES /////////
+
+
 var explosion = new Audio("ressources/explosion.mp3")
 var score = 0
 
@@ -451,7 +455,7 @@ var playBtn = document.getElementById('playPause');
 let count = 1;
 
 
-///////// COUPER OU ENLEVER LE SON /////////
+///////// COUPER OU REMETTRE LE SON /////////
 
 
 function playPause(){
