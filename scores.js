@@ -2,6 +2,10 @@ let main = document.querySelector('.scores')
 
 //localStorage.clear()
 
+
+///////// CRÉATION DES CASES DU TABLEAU DES SCORES /////////
+
+
 for (let i = 0; i < 10; i++) {
     let newScore = document.createElement('tr')
     newScore.classList.add('score')
@@ -27,6 +31,10 @@ for (let i = 0; i < 10; i++) {
 }
 
 let number = 0;
+
+
+///////// AJOUT DES ÉLÉMENTS DU LOCAL STROAGE DANS LE TABLEAU /////////
+
 
 for (let i = 0; i < 10; i++) {
     let placement = 'placement' + i.toString()

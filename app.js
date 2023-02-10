@@ -3,7 +3,9 @@ var url = window.location.href;
 let grille = document.querySelector('.grille');
 let shooting = false;
 
+
 ///////// CRÉATION DE LA GRILLE ET DES ÉLÉMENTS QUI LA COMPOSE /////////
+
 
 for (let i=1; i<241; i++) {
     let cases = document.createElement('div');
@@ -25,7 +27,9 @@ for (let i=1; i<241; i++) {
     grille.append(cases)
 }
 
+
 ///////// DÉPLACER LES ALIENS À GAUCHE /////////
+
 
 function goLeft() {
     for (let i = 0; i < 239; i ++) {
@@ -42,7 +46,9 @@ function goLeft() {
     }
 }
 
+
 ///////// DÉPLACER LES ALIENS VERS LA DROITE /////////
+
 
 function goRight() {
     for (let i = 239; i >= 0; i --) {
@@ -62,13 +68,17 @@ function goRight() {
 let direction= 'right';
 var down = true;
 
+
 ///////// LANCER LA PARTIE /////////
+
 
 function move() {
     let num = document.getElementsByClassName('alien').length
     let aliens = document.getElementsByClassName('alien')
 
+
     ///////// VÉRIFIFCATION DE LA VICTOIRE /////////
+
 
     if (num < 1) {
 
@@ -124,7 +134,8 @@ function move() {
         },5000);*/
         
 
-        ///////// MORCEAU DE CODE POUR NIVEAU SECRET /////////
+        ///////// MORCEAUX DE CODE POUR NIVEAU SECRET /////////
+
 
         let message = document.getElementById('secret_word')
         message.style.visibility = "visible"
@@ -182,7 +193,9 @@ function move() {
     
     let casesList = document.querySelectorAll('.case')
 
+
     ///////// VÉRIFICATION DE LA DÉFAITE /////////
+
     
     for (let i = 0; i < casesList.length; i++) {
         if ((casesList[i].classList.contains('tireur') && casesList[i].classList.contains('alien')) || (casesList[i].classList.contains('alien') && i > 220)) {
@@ -259,7 +272,9 @@ function move() {
 
     let cases = document.querySelectorAll('.case')
 
+
     ///////// DÉPLACEMENT DES ALIENS VERS LE BAS /////////
+
 
     for (let k = num-1; k >= 0; k--) {
 
@@ -300,7 +315,9 @@ function move() {
         }
     }
 
+
     ///////// DÉPLACEMENT DES ALIENS EN FONCTION DE LEUR DIRECTION /////////
+
 
     if (direction == 'right') {
 
@@ -321,13 +338,17 @@ var score = 0
 
 let ennemiesDestroyed = 0;
 
+
 ///////// DÉPLACEMENT DU MISSILE /////////
+
 
 function goUp() {
 
     let cases = document.querySelectorAll('.case')
 
+
     ///////// DÉPLACEMENT DU MISSILE VERS LE HAUT /////////
+
     
     for(let j = 0; j < 20; j++) {
         for (let k = 0; k < cases.length; k++) {
@@ -341,7 +362,9 @@ function goUp() {
         }
     }
 
+
     ///////// DÉSTRUCTION DE L'ALIEN LORSQU'UN MISSILE LE TOUCHE /////////
+
     
     for (let k = 0; k < cases.length; k++) {
         if (cases[k].classList.contains('alien') && cases[k].classList.contains('laser')) {
@@ -375,7 +398,9 @@ url = window.location.href;
 
 var speed;
 
+
 ///////// VITESSE DU JEU EN FONCTION DE LA DIFFICULTÉ CHOISI /////////
+
 
 if (url.includes('easy')) {
     speed = 750;
@@ -392,7 +417,9 @@ let stopper = document.getElementById('stop');
 let returner = document.getElementById('return')
 let replay = document.getElementById('play_again')
 
+
 ///////// ÉVÈNEMENTS DES DIFFÉRENTS BOUTONS /////////
+
 
 returner.addEventListener("click", () => {
     window.location.href = 'index.html'
@@ -423,7 +450,9 @@ var playBtn = document.getElementById('playPause');
 
 let count = 1;
 
+
 ///////// COUPER OU ENLEVER LE SON /////////
+
 
 function playPause(){
     console.log(count)
@@ -443,7 +472,9 @@ var laserShoot = new Audio("ressources/laser.mp3");
 
 var numberOfShots = 0;
 
+
 ///////// MOUVEMENT DU JOUEUR /////////
+
 
 function movement() {
     let tireur = document.querySelector('.tireur')
@@ -525,7 +556,9 @@ function movement() {
             }, 12)
         }
 
+
         ///////// TIR DU JOUEUR /////////
+
 
         document.onkeyup = function (e) {
             if (e.code == 'Space') {
@@ -556,7 +589,9 @@ function movement() {
     }
 }
 
+
 ///////// METTRE EN PAUSE LE JEU /////////
+
 
 function pause() {
     document.onkeydown = function (e) {
@@ -564,13 +599,17 @@ function pause() {
     }
 }
 
+
 ///////// ACCÈS AU NIVEAU SECRET /////////
+
 
 var code = [];
 const rightCode = ["UP", "UP", "DOWN", "DOWN", "LEFT", "RIGHT", "LEFT", "RIGHT", "B", "A"];
 var verif = [];
 
+
 ///////// VÉRIFICATION DU CODE RENTRÉ PAR L'UTILISATEUR /////////
+
 
 function isEqual(tableau1, tableau2) {
     return tableau1.every((value, index) => value === tableau2[index])

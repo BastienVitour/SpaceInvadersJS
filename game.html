@@ -8,6 +8,9 @@
     <link rel="shortcut icon" href="ressources/alien.png" type="image/x-icon">
 </head>
 <body>
+
+<!-- AFFICHAGE DU CODE POUR LE NIVEAU SECRET -->
+
 <div id="secret_word"></div>
 <div class="container">
     <header>
@@ -16,18 +19,29 @@
     
     <div class="main">
 
+        <!-- AFFICHAGE DU SCORE -->
+
         <h3 id="score">Score : 0</h3>
+
+        <!-- GRILLE DU JEU -->
 
         <div class="grille"></div>
         
+        <!-- GIF DE VICTOIRE OU DE LOOSE -->
+
         <div class="lose"></div>
         <div class="victoire"></div>
+
+        <!-- RENTRER UN PSEUDO LORSQUE L'UTILISATEUR EST DANS LE TOP 10 -->
+
         <div class="pseudo">
             <p>Vous etes dAns le top 10 ! <br> Veuillez choisir un pseudo</p>
             <input type="text" name="playerName" id="playerName" maxlength="3">
             <button id="send">Envoyer</button>
         </div>
 
+        <!-- TOUS LES BOUTONS UTLISABLES DANS UNE PARTIE -->
+        
         <div class="buttons">
             <button id="return">Retour</button>
             <button id="launch">LAncer lA pArtie</button>
@@ -35,6 +49,8 @@
             <button id="play_again"> Rejouer </button>
             <button id="playPause" onclick="playPause()">Music ON</button> 
         </div>
+
+        <!-- MUSIQUE LORS D'UNE PARTIE -->
 
         <audio id="audio" autoplay>
             <source src="ressources/ChillSpace.mp3" type="audio/mpeg">
