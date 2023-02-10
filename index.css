@@ -10,7 +10,7 @@ body {
 
 @font-face {
 	font-family: 'minecraft';
-	src: url('ressources/minecrafter/Minecrafter.Alt.ttf') format('truetype');
+	src: url('ressources/fonts/Minecrafter.Alt.ttf') format('truetype');
 }
 
 input[type='radio'] {

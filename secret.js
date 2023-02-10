@@ -1,5 +1,5 @@
 let fond = document.getElementById('body');
-fond.style.background = 'url(ressources/rick_background.gif)'
+fond.style.background = 'url(ressources/GIF/rick_background.gif)'
 
 let grille = document.querySelector('.grille');
 let shooting = false;
@@ -103,7 +103,7 @@ function move() {
         victory.style.visibility = "visible"
         victory.style.display = "flex"
 
-        var gagner = new Audio("ressources/mlg.mp3")
+        var gagner = new Audio("ressources/sounds/mlg.mp3")
 
         gagner.play()
         audio.pause()
@@ -125,9 +125,7 @@ function move() {
 
 
     for (let i = 0; i < casesList.length; i++) {
-        //if (casesList[i].classList.contains('secret_tireur')) {
-        //    console.log(casesList[i].classList)
-        //}
+        
         if ((casesList[i].classList.contains('secret_tireur') && casesList[i].classList.contains('secret_alien')) || (casesList[i].classList.contains('secret_alien') && i > 220)) {
             console.log('Vous avez perdu')
             let precision = (goodShots/numberOfShots)*100
@@ -138,9 +136,7 @@ function move() {
             stopper.style.display = 'none'
             break;
         }
-        //if (casesList[i].classList.contains('secret_tireur')) {
-        //    console.log(casesList[i].classList)
-        //}
+        
         if ((casesList[i].classList.contains('secret_tireur') && casesList[i].classList.contains('alien')) || (casesList[i].classList.contains('alien') && i > 220)) {
 
             let grille = document.querySelector('.grille');
@@ -149,7 +145,7 @@ function move() {
             grille.classList.add('lose')
             lose.style.display = 'flex'
 
-            var perduS = new Audio("ressources/Morty.mp3")
+            var perduS = new Audio("ressources/sounds/Morty.mp3")
 
             perduS.play();
             audio.pause();
@@ -175,8 +171,6 @@ function move() {
 
 
     for (let k = num-1; k >= 0; k--) {
-
-        //console.log(alienSecret[k])
 
         if (aliens[k].classList.contains('right-stop')) {
             
@@ -277,7 +271,7 @@ function move() {
 ///////// SON D'EXPLOSION DES MISSILES /////////
 
 
-var explosion = new Audio("ressources/break.mp3")
+var explosion = new Audio("ressources/sounds/break.mp3")
 var score = 0
 
 let ennemiesDestroyed = 0
@@ -307,7 +301,7 @@ function goUp() {
     }
 
 
-    ///////// DÉSTRUCTION DE L'ALIEN LORSQU'UN MISSILE LE TOUCHE /////////
+    ///////// DESTRUCTION DE L'ALIEN LORSQU'UN MISSILE LE TOUCHE /////////
 
     
     for (let k = 0; k < cases.length; k++) {
@@ -412,7 +406,7 @@ let casesList = document.querySelectorAll('.case')
 ///////// MOUVEMENT DU JOUEUR /////////
 
 
-var laserShoot = new Audio("ressources/Hit.mp3");
+var laserShoot = new Audio("ressources/sounds/Hit.mp3");
 var numberOfShots = 0
 
 function movement() {

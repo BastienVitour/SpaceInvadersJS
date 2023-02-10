@@ -48,7 +48,7 @@ header{
 
 @font-face {
 	font-family: 'minecraft';
-	src: url('ressources/minecrafter/Minecrafter.Alt.ttf') format('truetype');
+	src: url('ressources/fonts/Minecrafter.Alt.ttf') format('truetype');
 }
 
 .titre {
@@ -67,18 +67,18 @@ header{
     height: 25px;
 }
 .tireur {
-    background: url(ressources/space-invaders.png);
+    background: url(ressources/images/space-invaders.png);
     /*transform: rotate(180deg);*/
     background-position: center;
     background-size: contain;
 }
 .alien {
-    background: url(ressources/ennemies.png);
+    background: url(ressources/images/ennemies.png);
     background-position: center;
     background-size: contain;
 }
 .aliens {
-    background: url(ressources/ennemies.png);
+    background: url(ressources/images/ennemies.png);
     background-position: center;
     width: 100px;
 }
@@ -86,7 +86,7 @@ header{
     background-color: red;
 }
 .laser {
-    background: url(ressources/missile.png);
+    background: url(ressources/images/missile.png);
     transform: rotate(90deg);
     background-position: center;
     background-size: contain;

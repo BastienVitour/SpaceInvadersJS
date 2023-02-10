@@ -87,5 +87,3 @@ function playPause(){
         playBtn.innerHTML = "Music OFF"
     }
 }
-
-//setTimeout(playPause, 1000)

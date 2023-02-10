@@ -92,25 +92,17 @@ function move() {
         victory.style.visibility = "visible"
         victory.style.display = "flex"
 
-        var gagner = new Audio("ressources/victoire.mp3")
+        var gagner = new Audio("ressources/sounds/victoire.mp3")
 
         console.log('here we go again')
 
         gagner.play()
         audio.pause()
 
-        //pause()
-        /*let inputPseudo = document.querySelector('.pseudo')
-        inputPseudo.style.visibility = "visible"
-        inputPseudo.style.display = "flex"
-        victory.style.visibility = "hidden"
-        victory.style.display = "none"*/
         if ('score9' in localStorage) {
             if (score > localStorage.getItem('score9') || (precision > localStorage.getItem('precision9') && score >= localStorage.getItem('score9'))) {
         
                 setTimeout(() => {
-                    //audio.play()
-                    //gagner.pause()
                     let inputPseudo = document.querySelector('.pseudo')
                     inputPseudo.style.visibility = "visible"
                     inputPseudo.style.display = "flex"
@@ -131,17 +123,13 @@ function move() {
         }
         else {
             setTimeout(() => {
-                //audio.play()
-                //gagner.pause()
                 let inputPseudo = document.querySelector('.pseudo')
                 inputPseudo.style.visibility = "visible"
                 inputPseudo.style.display = "flex"
                 victory.style.visibility = "hidden"
                 victory.style.display = "none"
             },5000);
-        }
-        /**/
-        
+        }        
 
         ///////// MORCEAUX DE CODE POUR NIVEAU SECRET /////////
 
@@ -171,7 +159,6 @@ function move() {
         if ('score9' in localStorage) {
             if (score > localStorage.getItem('score9') || (precision > localStorage.getItem('precision9') && score >= localStorage.getItem('score9'))) {
                 
-                //let name = prompt('Indiquez votre pseudo')
                 let sendBtn = document.getElementById('send')
                 let playerInput = document.getElementById('playerName')
                 sendBtn.addEventListener('click', function() {
@@ -181,9 +168,6 @@ function move() {
                 })
                 
             }
-            //else {
-            //    alert("Vous n'êtes pas dans le top 10")
-            //}
             
         }
         else {
@@ -217,7 +201,7 @@ function move() {
             grille.classList.add('lose');
             lose.style.display = 'flex';
 
-            var perdu = new Audio("ressources/MarioDeath.mp3")
+            var perdu = new Audio("ressources/sounds/MarioDeath.mp3")
 
             console.log('YOU LOSE')
 
@@ -231,8 +215,6 @@ function move() {
                     console.log(score)
                     console.log('on est la')
                     setTimeout(() => {
-                        //audio.play()
-                        //gagner.pause()
                         let inputPseudo = document.querySelector('.pseudo')
                         inputPseudo.style.visibility = "visible"
                         inputPseudo.style.display = "flex"
@@ -255,8 +237,6 @@ function move() {
             else {
                 if (score > 0) {
                     setTimeout(() => {
-                        //audio.play()
-                        //gagner.pause()
                         let inputPseudo = document.querySelector('.pseudo')
                         inputPseudo.style.visibility = "visible"
                         inputPseudo.style.display = "flex"
@@ -307,7 +287,7 @@ function move() {
                 })
             }
             
-            var perdu = new Audio("ressources/MarioDeath.mp3")
+            var perdu = new Audio("ressources/sounds/MarioDeath.mp3")
 
             perdu.play();
             audio.pause();
@@ -383,7 +363,7 @@ function move() {
 ///////// SONN D'EXPLOSION DES MISSILES /////////
 
 
-var explosion = new Audio("ressources/explosion.mp3")
+var explosion = new Audio("ressources/sounds/explosion.mp3")
 var score = 0
 
 let ennemiesDestroyed = 0;
@@ -518,7 +498,7 @@ function playPause(){
     }
 }
 
-var laserShoot = new Audio("ressources/laser.mp3");
+var laserShoot = new Audio("ressources/sounds/laser.mp3");
 
 var numberOfShots = 0;
 

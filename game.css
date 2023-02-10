@@ -1,3 +1,13 @@
+html {
+    overflow: hidden;
+    height: 100%;
+  }
+  
+  body {
+    overflow: auto;
+    height: 100%;
+  }
+
 body {
     color: white;
     font-family: 'minecraft', 'sans-serif';
@@ -73,7 +83,7 @@ header{
     border: 1px solid #ffffff;
     width: 500px;
     height: 500px;
-    margin: 0 auto;
+    margin: -10px auto;
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     background-image: url("/ressources/GIF/grille.gif");
     background-position: center;
@@ -107,7 +117,7 @@ header{
     height: 400px;
     margin: 0 auto;
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    background-image: url("ressources/background-black.png");
+    background-image: url("ressources/images/background-black.png");
     background-position: center;
     background-size: contain;
 }
@@ -124,7 +134,7 @@ header{
     height: 400px;
     margin: 0 auto;
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    background-image: url("ressources/background-black.png");
+    background-image: url("ressources/images/background-black.png");
     background-position: center;
     background-size: contain;
     font-family: 'minecraft';
@@ -133,7 +143,7 @@ header{
 
 @font-face {
 	font-family: 'atari';
-	src: url('ressources/atari.ttf') format('truetype');
+	src: url('ressources/fonts/atari.ttf') format('truetype');
 }
 
 input {
@@ -143,7 +153,6 @@ input {
     width: 50%;
     color: white;
     font-size: 10em;
-    /*letter-spacing: 15px;*/
     font-family: 'atari';
     text-transform:uppercase;
 }
@@ -163,7 +172,7 @@ input {
 
 @font-face {
 	font-family: 'minecraft';
-	src: url('ressources/minecrafter/Minecrafter.Alt.ttf') format('truetype');
+	src: url('ressources/fonts/Minecrafter.Alt.ttf') format('truetype');
 }
 
 .titre {
@@ -182,27 +191,27 @@ input {
     height: 25px;
 }
 .tireur {
-    background: url(ressources/space-invaders.png);
+    background: url(ressources/images/space-invaders.png);
     background-position: center;
     background-size: contain;
 }
 .alien {
-    background: url(ressources/ennemies.png);
+    background: url(ressources/images/ennemies.png);
     background-position: center;
     background-size: contain;
 }
 .aliens {
-    background: url(ressources/ennemies.png);
+    background: url(ressources/images/ennemies.png);
     background-position: center;
     width: 100px;
 }
 .boom {
-    background: url(ressources/explosion.png);
+    background: url(ressources/images/explosion.png);
     background-position: center;
     background-size: contain; 
 }
 .laser {
-    background: url(ressources/missile.png);
+    background: url(ressources/images/missile.png);
     transform: rotate(90deg);
     background-position: center;
     background-size: contain;
@@ -240,9 +249,9 @@ button, .chosen-diff {
     margin: auto;
     text-align: center;
 }
-.buttons {
+/*.buttons {
     margin-top: 2%;
-}
+}*/
 
 #play_again, #stop {
     display: none;
@@ -250,5 +259,9 @@ button, .chosen-diff {
 
 h3 {
     width: 50%;
-    margin: 0vh auto 6vh;
+    margin: 0 auto 6vh;
+}
+
+h1 {
+    margin: 0;
 }

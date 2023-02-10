@@ -9,17 +9,17 @@ body {
 
 @font-face {
 	font-family: 'minecraft';
-	src: url('ressources/minecrafter/Minecrafter.Alt.ttf') format('truetype');
+	src: url('ressources/fonts/Minecrafter.Alt.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'apache';
-    src: url('ressources/apache.ttf');
+    src: url('ressources/fonts/apache.ttf');
 }
 
 @font-face {
     font-family: 'atari';
-    src: url('ressources/atari.ttf');
+    src: url('ressources/fonts/atari.ttf');
 }
 
 h1 {
@@ -30,7 +30,6 @@ h1 {
 }
 
 .scores {
-    /*border : 2px solid white;*/
     height: 560px;
 }
 
@@ -42,7 +41,6 @@ table {
 }
 
 td, th {
-    /*border: 1px solid white;*/
     font-family: 'atari'
 }
 
